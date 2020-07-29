@@ -1,0 +1,7 @@
+{
+  "title": "Breadcrumbs",
+  "remote_template": {
+    "editor": "%%%editor_base_url%%%/templates/component/breadcrumbs.html?_=%%%timestamp%%%",
+    "publish": "%%%publish_template_base_url%%%/templates/component/breadcrumbs.html?_=%%%timestamp%%%"
+  }
+}

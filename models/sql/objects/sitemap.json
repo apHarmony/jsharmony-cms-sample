@@ -1,0 +1,12 @@
+{
+  "cms.sitemap": {
+    "columns": [
+      { "name": "sitemap_id", "type": "bigint", "key": true, "identity": true, "null": false }
+    ],
+    "sample_data": [
+      { "sitemap_name": "Primary Sitemap", "sitemap_type": "PRIMARY", "_FILES": { "sitemap.json": "sitemap/{{sitemap_id}}.json" } },
+      { "_FILES": { "sitemap_careers.json": "sitemap/2.json" } },
+      { "_FILES": { "sitemap_testimonials.json": "sitemap/3.json" } }
+    ]
+  }
+}

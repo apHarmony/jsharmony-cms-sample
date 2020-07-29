@@ -1,0 +1,9 @@
+{
+  "menu_items": [
+    {"menu_item_id":2,"menu_item_parent_id":null,"menu_item_path":"/2/","menu_item_type":"TEXT","menu_item_text":"Home","menu_item_link_type":"PAGE","menu_item_link_dest":"1"},
+    {"menu_item_id":3,"menu_item_parent_id":null,"menu_item_path":"/3/","menu_item_type":"TEXT","menu_item_text":"About","menu_item_link_type":"PAGE","menu_item_link_dest":"2"},
+    {"menu_item_id":4,"menu_item_parent_id":null,"menu_item_path":"/4/","menu_item_type":"TEXT","menu_item_text":"Services","menu_item_link_type":"PAGE","menu_item_link_dest":"3"},
+    {"menu_item_id":6,"menu_item_parent_id":null,"menu_item_path":"/6/","menu_item_type":"TEXT","menu_item_text":"Testimonials","menu_item_link_type":"PAGE","menu_item_link_dest":"10"},
+    {"menu_item_id":5,"menu_item_parent_id":null,"menu_item_path":"/5/","menu_item_type":"TEXT","menu_item_text":"Contact","menu_item_link_type":"PAGE","menu_item_link_dest":"8"}
+  ]
+}

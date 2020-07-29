@@ -1,0 +1,43 @@
+{
+  "id": "googlemap",
+  "title": "Google Map",
+  "caption": ["Google Map", "Google Maps"],
+  "icon": "material:map",
+  "remote_template": {
+    "editor": "%%%editor_base_url%%%/templates/component/googlemap.html?_=%%%timestamp%%%",
+    "publish": "%%%publish_template_base_url%%%/templates/component/googlemap.html?_=%%%timestamp%%%"
+  },
+  "properties": {
+    "fields": [
+      { "name": "addressLine1", "caption": "Address Line 1", "type": "varchar", "length": 1024,
+        "control": "textbox", "controlstyle": "width:260px", "validate": ["MaxLength:1024"]},
+
+      { "name": "addressLine2", "caption": "Address Line 2", "type": "varchar", "length": 1024,
+        "control": "textbox", "controlstyle": "width:260px", "validate": ["MaxLength:1024"]},
+
+      { "name": "addressLine3", "caption": "Address Line 3", "type": "varchar", "length": 1024,
+        "control": "textbox", "controlstyle": "width:260px", "validate": ["MaxLength:1024"]},
+
+      { "control": "html", "value": "<div style='width:260px;display:inline-block;margin-bottom:8px;'><b>Example:</b> Enter the company name in Line 1, Address in Line 2, and City State Zip in Line 3</div>", "nl": true },
+
+      { "name": "height", "caption": "Height (px)", "type": "int", "default": 400,
+        "control": "textbox", "controlstyle": "width:80px", "validate": [ "IsNumeric", "Required" ] },
+
+      { "name": "cssStyle", "caption": "CSS Style", "type": "varchar", "length": 1024,
+        "control": "textbox", "controlstyle": "width:260px", "validate": ["MaxLength:1024"]},
+
+      { "name": "cssClass", "caption": "CSS Class", "type": "varchar", "length": 1024,
+        "control": "textbox", "controlstyle": "width:260px", "validate": ["MaxLength:1024"]},
+
+      { "name": "wrapper", "caption": "Wrapper", "type": "varchar",
+        "control": "textarea", "controlstyle": "height:150px;width:260px",
+        "validate": [
+          { "function":"js:if(_obj.wrapper && ((_obj.wrapper||'').toString().indexOf('%%%CONTENT%%%') <= 0)) return 'Wrapper requires %%%CONTENT%%% flag';" },
+          { "function":"js:if(_obj.wrapper && ((_obj.wrapper||'').toString().split('%%%CONTENT%%%').length > 2)) return 'Wrapper can only have one %%%CONTENT%%% flag';" }
+        ]
+      },
+      
+      { "control": "html", "value": "<b>Example:</b> &lt;div&gt;%%%CONTENT%%%&lt;/div&gt;", "nl": "true" },
+    ]
+  }
+}

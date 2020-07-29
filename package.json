@@ -1,0 +1,43 @@
+{
+  "name": "jsharmony-cms-sample",
+  "version": "1.0.1",
+  "description": "jsHarmony CMS Sample Project",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "create-database": "node node_modules/jsharmony-factory/init/create.js",
+    "init-database": "node node_modules/jsharmony-factory/init/init.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/apHarmony/jsharmony-cms-sample"
+  },
+  "keywords": [
+    "jsHarmony CMS",
+    "Sample Site",
+    "CMS",
+    "jsHarmony",
+  ],
+  "author": "apHarmony <contact@apharmony.com> (http://www.apharmony.com/)",
+  "license": "LGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/apHarmony/jsharmony-cli/issues"
+  },
+  "homepage": "https://github.com/apHarmony/jsharmony-cli",
+  "dependencies": {
+    "async": "^2.6.2",
+    "aws-sdk": "^2.522.0",
+    "jsharmony": "^1.0.0",
+    "jsharmony-cms": "^1.0.0",
+    "jsharmony-db": "^1.0.0",
+    "jsharmony-db-mssql": "^1.0.0",
+    "jsharmony-db-sqlite": "^1.0.0",
+    "jsharmony-factory": "^1.0.0",
+    "jsharmony-validate": "^1.0.0",
+    "lodash": "^4.17.14",
+    "winser": "^1.0.2"
+  },
+  "devDependencies": {
+    "mocha": "^7.1.2"
+  }
+}

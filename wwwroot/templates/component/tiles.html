@@ -1,0 +1,75 @@
+<%
+  var items = (data && data.items || []);
+  var previewSuffix = ((renderType=='gridRowDataPreview') || (renderType=='gridItemPreview')) ? '_preview' : '';
+
+  var tilesPerRow = properties.tilesPerRow;
+  if(tilesPerRow=='auto'){
+    if(items.length <=4) tilesPerRow = items.length || 1;
+    else if(items.length == 5) tilesPerRow = 3;
+    else if(items.length == 6) tilesPerRow = 3;
+    else tilesPerRow = 4;
+  }
+
+  var wrapper = (properties.wrapper || '%%%CONTENT%%%').toString().split('%%%CONTENT%%%');
+  var wrapperPrefix = (wrapper.length >= 1) ? wrapper[0] : '';
+  var wrapperSuffix = (wrapper.length >= 2) ? wrapper[1] : '';
+%>
+<% if (items.length) { %>
+  <%-wrapperPrefix%>
+  <div class="cmptTiles jsharmony_cms_component<%=previewSuffix%> cmptTiles-x<%=tilesPerRow%> <%=(properties.tilesPerRow=='auto'?'cmptTiles-xAuto':'')%> <% if(!previewSuffix){ %>responsive<% } %> <%=properties.cssClass%>" style="<%=properties.cssStyle%>">
+    <% items.forEach(function(item, index) { %>
+      <%
+
+        //Tile
+        var tileStyle = '';
+        if(properties.minTileHeight) tileStyle += 'min-height:'+properties.minTileHeight+';';
+        if(properties.maxTileHeight) tileStyle += 'overflow:hidden; max-height:'+properties.maxTileHeight+';';
+
+        //Shadow
+        var tileContentShadow = '';
+        if(item.contentOverlayShadow=='light_full') tileContentShadow = 'cmptTiles_tileImageOverlay-shadowLight';
+        else if(item.contentOverlayShadow=='heavy_full') tileContentShadow = 'cmptTiles_tileImageOverlay-shadowHeavy';
+
+        //Image Container
+        var imageContainerClass = '';
+        if((properties.titlePosition=='top') || (properties.bodyPosition=='top')) imageContainerClass += ' cmptTiles_tileImageContainer-contentAbove';
+        if((properties.titlePosition=='bottom') || (properties.bodyPosition=='bottom')) imageContainerClass += ' cmptTiles_tileImageContainer-contentBelow';
+
+        //Link
+        var linkOnClick = '';
+        var linkUrl = item.link||'';
+        if(previewSuffix) linkUrl = '';
+        else if(linkUrl.substr(0,3)=='js:'){
+          linkOnClick = linkUrl.substr(3) + '; return false;';
+          linkUrl = '#';
+        }
+
+      %>
+      <div class="cmptTiles_tile item<%=index%> <%=item.cssClass||''%>" style="<%=tileStyle%>" data-tile="<%=index%>">
+        <a <% if(linkUrl){ %>href="<%=linkUrl%>"<% } %> <% if(linkOnClick){ %>onclick="<%=linkOnClick%>"<% } %> class="cmptTiles_tileLink <% if(linkUrl){ %>cmptTiles_tileLink-linked<% } %>" <%if(item.linkTarget){%>target="<%=item.linkTarget%>"<%}%>>
+          <% if(properties.titlePosition=='top'){ %><h2 class="cmptTiles_tileTitle cmptTiles_tileTitle-top" <% if(renderType=='gridItemPreview'){ %>data-component-title-editor="title"<% } %>><%-item.title%></h2><% } %>
+          <% if(properties.bodyPosition=='top'){ %><div class="cmptTiles_tileBody cmptTiles_tileTitle-top" <% if(renderType=='gridItemPreview'){ %>data-component-full-editor="body"<% } %>><%-item.body%></div><% } %>
+          <div class="cmptTiles_tileImageContainer <%-imageContainerClass%>">
+            <% if(item.image){ %><img class="cmptTiles_tileImage" src="<%=item.image%>" /><% } %>
+            <div class="cmptTiles_tileImageOverlay <%=tileContentShadow%>">
+              <% if(properties.titlePosition=='overlay'){ %><h2 class="cmptTiles_tileTitle cmptTiles_tileTitle-overlay" <% if(renderType=='gridItemPreview'){ %>data-component-title-editor="title"<% } %>><%-item.title%></h2><% } %>
+              <% if(properties.bodyPosition=='overlay'){ %><div class="cmptTiles_tileBody cmptTiles_tileTitle-overlay" <% if(renderType=='gridItemPreview'){ %>data-component-full-editor="body"<% } %>><%-item.body%></div><% } %>
+            </div>
+          </div>
+          <% if(properties.titlePosition=='bottom'){ %><h2 class="cmptTiles_tileTitle cmptTiles_tileTitle-bottom" <% if(renderType=='gridItemPreview'){ %>data-component-title-editor="title"<% } %>><%-item.title%></h2><% } %>
+          <% if(properties.bodyPosition=='bottom'){ %><div class="cmptTiles_tileBody cmptTiles_tileTitle-bottom" <% if(renderType=='gridItemPreview'){ %>data-component-full-editor="body"<% } %>><%-item.body%></div><% } %>
+        </a>
+      </div>
+    <% }) %>
+  </div>
+  <%-wrapperSuffix%>
+<% } else if(isInEditor) { %>
+  <%-wrapperPrefix%>
+  <div class="jsharmony_cms_component<%=previewSuffix%> empty <%=properties.cssClass%>" style="<%=properties.cssStyle%>;">
+    <div><h3>Tiles</h3></div>
+    <div>
+      <span class="material-icons">view_module</span>
+    </div>
+  </div>
+  <%-wrapperSuffix%>
+<% } %>

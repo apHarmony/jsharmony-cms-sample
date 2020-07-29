@@ -1,0 +1,24 @@
+{
+  "cms.menu": {
+    "columns": [
+      { "name": "media_id", "type": "bigint", "key": true, "identity": true, "null": false }
+    ],
+    "sample_data": [
+      { "menu_name": "Main Menu", "menu_tag": "main", "menu_template_id": "main", "menu_path": "/menu/", "_FILES": { "menu_site.json": "menu/{{menu_id}}.json" } },
+      { "menu_name": "Footer Menu", "menu_tag": "footer", "menu_template_id": "footer", "menu_path": "/menu/footer.html", "_FILES": { "menu_footer.json": "menu/{{menu_id}}.json" } },
+      { "_FILES": { "menu_footer_careers.json": "menu/3.json" } },
+      { "_FILES": { "menu_site_testimonials.json": "menu/4.json" } },
+      { "_FILES": { "menu_footer_testimonials.json": "menu/5.json" } },
+    ]
+  },
+  "cms.branch_menu": {
+    "columns": [
+      { "name": "branch_menu_id", "type": "bigint", "key": true, "identity": true, "null": false }
+    ],
+    "data_keys": ["branch_id","menu_key"],
+    "sample_data": [
+      { "branch_id": "1", "menu_key": "1", "menu_id": "1", "menu_orig_id": "1" },
+      { "branch_id": "1", "menu_key": "2", "menu_id": "2", "menu_orig_id": "2" },
+    ]
+  }
+}

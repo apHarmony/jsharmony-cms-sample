@@ -1,0 +1,19 @@
+{
+  "cms.redirect": {
+    "columns": [
+      { "name": "redirect_id", "type": "bigint", "key": true, "identity": true, "null": false }
+    ],
+    "sample_data": [
+      { "redirect_url": "/page/", "redirect_url_type": "BEGINS", "redirect_seq": 1, "redirect_dest": "/", "redirect_http_code": "302" },
+    ]
+  },
+  "cms.branch_redirect": {
+    "columns": [
+      { "name": "branch_redirect_id", "type": "bigint", "key": true, "identity": true, "null": false }
+    ],
+    "data_keys": ["branch_id","redirect_key"],
+    "sample_data": [
+      { "branch_id": "1", "redirect_key": "1", "redirect_id": "1", "redirect_orig_id": "1" },
+    ]
+  }
+}

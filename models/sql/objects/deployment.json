@@ -1,0 +1,19 @@
+{
+  "cms.deployment_target": {
+    "sample_data": [
+      { 
+        "site_id": 1, 
+        "deployment_target_name": "01 / Local FS", 
+        "deployment_target_publish_path": "",
+        "deployment_target_params": "{ \"env\": \"local\", \"editor_base_url\": \"https://localhost:8082\", \"publish_template_base_url\": \"https://localhost:8082\" }"
+      }
+    ]
+  },
+
+  "cms.deployment_target_role": {
+    "sample_data": [
+      { "deployment_target_id": 1, "sys_role_name": "*", "deployment_target_role_type": "PUBLISH" },
+      { "deployment_target_id": 1, "sys_role_name": "*", "deployment_target_role_type": "EDITOR" },
+    ]
+  }
+}

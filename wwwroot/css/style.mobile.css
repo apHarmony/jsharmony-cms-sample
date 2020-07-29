@@ -1,0 +1,147 @@
+@media screen and (min-width: 1546px) {
+  .xcontentpanel > .fullWidth,
+  .xcontentpanel > [data-component] > .fullWidth {
+    margin-left: calc(-50vw + 750px);
+    margin-right: calc(-50vw + 750px);
+  }
+  .cmptSlideshow_btnPrev { left:10px; }
+  .cmptSlideshow_btnNext { right:10px; }
+}
+
+@media screen and (min-width: 1500px) {
+  .responsive .cmptVideo_title,
+  .responsive .cmptSlideshow_slideTitle { font-size:2.3em; }
+  .responsive .cmptVideo_body,
+  .responsive .cmptSlideshow_slideBody { font-size:1.3em; }
+}
+
+@media screen and (max-width: 1500px) {
+  .responsive .cmptVideo_title,
+  .responsive .cmptSlideshow_slideTitle { font-size:1.9em; }
+  .responsive .cmptVideo_body,
+  .responsive .cmptSlideshow_slideBody { font-size:1em; }
+}
+  
+@media screen and (max-width: 1100px) {
+  .responsive .cmptVideo_title,
+  .responsive .cmptSlideshow_slideTitle { font-size:1.5em; }
+  .responsive .cmptVideo_body,
+  .responsive .cmptSlideshow_slideBody { font-size:0.9em; }
+
+  .cmptTiles-x2.responsive .cmptTiles_tile { width:50%; }
+  .cmptTiles-x3.responsive .cmptTiles_tile { width:33%; }
+  .cmptTiles-x4.responsive .cmptTiles_tile { width:50%; }
+  .cmptTiles-x6.responsive .cmptTiles_tile { width:33%; }
+  .cmptTiles-x8.responsive .cmptTiles_tile { width:25%; }
+}
+
+@media screen and (max-width: 880px) {
+  .responsive .cmptVideo_title,
+  .responsive .cmptSlideshow_slideTitle {
+    font-size:1.5em;
+    margin-bottom:2px;
+  }
+  .responsive .cmptVideo_body,
+  .responsive .cmptSlideshow_slideBody { 
+    font-size:0.9em;
+  }
+}
+
+@media screen and (max-width: 750px){
+  .xcontentcolumns { display:block; }
+
+  #xcontent textarea { width:100% !important; }
+  .xsidenav_tree {
+    display:none;
+    padding:0 10px 10px 15px;
+  }
+  .xsidenav_tree.expanded { display:block; }
+  .xsidenav {
+    border-right:none;
+    border-left: 2px solid #aaa;
+    margin-left:23px;
+    margin-bottom:15px;
+    margin-top:-18px;
+    padding-left:12px;
+  }
+  .xsidenav 
+  .xsidenav_more {
+    display:inline-block;
+  }
+  .xsidenav_head {
+    padding:5px 0;
+  }
+  .xcontentpanel_2col {
+    padding-left:23px;
+  }
+  
+  .xfooter_logo img { max-width:400px; }
+
+  .cmptTiles-x2.responsive .cmptTiles_tile { width:100%; }
+  .cmptTiles-x3.responsive .cmptTiles_tile { width:100%; }
+  .cmptTiles-x4.responsive .cmptTiles_tile { width:100%; }
+  .cmptTiles-x2.responsive .cmptTiles_tileLink { padding-left:0; padding-right:0; }
+  .cmptTiles-x3.responsive .cmptTiles_tileLink { padding-left:0; padding-right:0; }
+  .cmptTiles-x4.responsive .cmptTiles_tileLink { padding-left:0; padding-right:0; }
+}
+@media screen and (max-width: 673px){
+  .cmptSlideshow_btnPrev,.cmptSlideshow_btnNext {
+    display:none !important;
+  }
+  .responsive .cmptVideo_title,
+  .responsive .cmptSlideshow_slideTitle {
+    font-size:1.5em;
+  }
+  .responsive .cmptVideo_body,
+  .responsive .cmptSlideshow_slideBody { 
+    display:none;
+  }
+  .pnlBios {
+    display:block;
+  }
+  .pnlBios_bio {
+    margin-left:auto;
+    margin-right:auto;
+    width:auto;
+    max-width:200px;
+    margin-bottom:50px;
+  }
+  .pnlIcons {
+    display:block;
+  }
+  .pnlIcons_item {
+    margin-left:auto;
+    margin-right:auto;
+    width:auto;
+    max-width:200px;
+    margin-bottom:50px;
+  }
+  .pnlQuote {
+    font-size: 2em;
+  }
+  .pnlQuote_text, .pnlQuote_author { max-width:75%; }
+}
+@media screen and (max-width: 610px){
+  .xcontentcolumns #xcontent {
+    display: block;
+  }
+  .xcontentpanel_2col {
+    width:100%;
+    padding-top:40px;
+  }
+
+  .cmptTiles-x1.responsive .cmptTiles_tile { width:100%; }  
+  .cmptTiles-x6.responsive .cmptTiles_tile { width:100%; }
+  .cmptTiles-x8.responsive .cmptTiles_tile { width:50%; }
+  .cmptTiles-x1.responsive .cmptTiles_tileLink { padding-left:0; padding-right:0; }
+  .cmptTiles-x6.responsive .cmptTiles_tileLink { padding-left:0; padding-right:0; }
+}
+@media screen and (max-width: 514px){
+  .xfooter_logo img { max-width:100%; }
+
+  .cmptCarousel_tileTitle { font-size:1.1em; }
+  .cmptCarousel_tileBody { font-size:0.9em; }
+
+  .cmptTiles_tileTitle { font-size:1.1em; }
+  .cmptTiles_tileBody { font-size:0.9em; }
+}

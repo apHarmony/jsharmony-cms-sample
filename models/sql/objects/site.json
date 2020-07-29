@@ -1,0 +1,16 @@
+{
+  "cms.site": {
+    "sample_data": [
+      { "site_name": "Default Web Site" }
+    ]
+  },
+  "cms.branch_sitemap": {
+    "columns": [
+      { "name": "branch_sitemap_id", "type": "bigint", "key": true, "identity": true, "null": false }
+    ],
+    "data_keys": ["branch_id","sitemap_key"],
+    "sample_data": [
+      { "branch_id": "1", "sitemap_key": "1", "sitemap_id": "1", "sitemap_orig_id": "1" },
+    ]
+  }
+}

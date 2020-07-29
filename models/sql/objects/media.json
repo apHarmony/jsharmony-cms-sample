@@ -1,0 +1,46 @@
+{
+  "cms.media": {
+    "columns": [
+      { "name": "media_id", "type": "bigint", "key": true, "identity": true, "null": false }
+    ],
+    "sample_data": [
+      { "media_path": "/pages/home/slideshow_rocks.jpg", "media_ext": ".jpg", "media_size": 105176, "media_width": 1000, "media_height": 375, "media_desc": "Home Page Slideshow Rocks", "media_tags": "Slideshow Rock", "media_type": "PHOTO", "_FILES": { "pages_home_slide_rocks.jpg": "media/{{media_id}}.jpg" } },
+      { "media_path": "/pages/home/slideshow_biology.jpg", "media_ext": ".jpg", "media_size": 32335, "media_width": 1000, "media_height": 375, "media_desc": "Home Page Slideshow Biology", "media_tags": "Slideshow Biology", "media_type": "PHOTO", "_FILES": { "pages_home_slide_biology.jpg": "media/{{media_id}}.jpg" } },
+
+      { "media_path": "/pages/about/profile_amy.jpg", "media_ext": ".jpg", "media_size": 25585, "media_width": 400, "media_height": 400, "media_desc": "Profile Photo - Amy", "media_tags": "Profile Amy", "media_type": "PHOTO", "_FILES": { "pages_about_profile_amy.jpg": "media/{{media_id}}.jpg" } },
+      { "media_path": "/pages/about/profile_steve.jpg", "media_ext": ".jpg", "media_size": 18283, "media_width": 400, "media_height": 400, "media_desc": "Profile Photo - Steve", "media_tags": "Profile Steve", "media_type": "PHOTO", "_FILES": { "pages_about_profile_steve.jpg": "media/{{media_id}}.jpg" } },
+      { "media_path": "/pages/about/profile_david.jpg", "media_ext": ".jpg", "media_size": 19405, "media_width": 400, "media_height": 400, "media_desc": "Profile Photo - David", "media_tags": "Profile David", "media_type": "PHOTO", "_FILES": { "pages_about_profile_david.jpg": "media/{{media_id}}.jpg" } },
+
+      { "media_path": "/pages/services/world_palm.jpg", "media_ext": ".jpg", "media_size": 124028, "media_width": 1244, "media_height": 829, "media_desc": "World Map in Palm of Hand", "media_tags": "World", "media_type": "ARTWORK", "_FILES": { "pages_services_globe.jpg": "media/{{media_id}}.jpg" } },
+      { "media_path": "/pages/services/business_meeting.jpg", "media_ext": ".jpg", "media_size": 167908, "media_width": 1244, "media_height": 829, "media_desc": "Business Meeting", "media_tags": "Meeting, Corporate, Business", "media_type": "PHOTO", "_FILES": { "pages_services_meeting.jpg": "media/{{media_id}}.jpg" } },
+      { "media_path": "/pages/services/modern_building_city.jpg", "media_ext": ".jpg", "media_size": 378361, "media_width": 1244, "media_height": 829, "media_desc": "Modern Building in City", "media_tags": "City, Building", "media_type": "PHOTO", "_FILES": { "pages_services_city.jpg": "media/{{media_id}}.jpg" } },
+      { "media_path": "/pages/services/fishing_dock.jpg", "media_ext": ".jpg", "media_size": 284254, "media_width": 1244, "media_height": 829, "media_desc": "Fishing", "media_tags": "Dock, Lake, Fishing", "media_type": "PHOTO", "_FILES": { "pages_services_dock.jpg": "media/{{media_id}}.jpg" } },
+      { "media_path": "/pages/services/smartphone_photo.jpg", "media_ext": ".jpg", "media_size": 212239, "media_width": 1244, "media_height": 829, "media_desc": "Smartphone Photo", "media_tags": "Smartphone, Photo, Museum", "media_type": "PHOTO", "_FILES": { "pages_services_engage.jpg": "media/{{media_id}}.jpg" } },
+
+      { "media_path": "/video/waves.mp4", "media_ext": ".mp4", "media_size": 2873467, "media_desc": "Waves crashing on the beach", "media_tags": "Waves, Beach, Ocean", "media_type": "VIDEO", "_FILES": { "waves.mp4": "media/{{media_id}}.mp4" } },
+      { "media_path": "/video/waves.webm", "media_ext": ".webm", "media_size": 774828, "media_desc": "Waves crashing on the beach", "media_tags": "Waves, Beach, Ocean", "media_type": "VIDEO", "_FILES": { "waves.mp4": "media/{{media_id}}.webm" } },
+      { "media_path": "/video/waves.preview.jpg", "media_ext": ".jpg", "media_size": 316795, "media_width": 1280, "media_height": 720, "media_desc": "Waves crashing on the beach", "media_tags": "Waves, Beach, Ocean", "media_type": "PHOTO", "_FILES": { "waves.preview.jpg": "media/{{media_id}}.jpg" } },
+    ]
+  },
+  "cms.branch_media": {
+    "columns": [
+      { "name": "branch_media_id", "type": "bigint", "key": true, "identity": true, "null": false }
+    ],
+    "data_keys": ["branch_id","media_key"],
+    "sample_data": [
+      { "branch_id": "1", "media_key": "1", "media_id": "1", "media_orig_id": "1" },
+      { "branch_id": "1", "media_key": "2", "media_id": "2", "media_orig_id": "2" },
+      { "branch_id": "1", "media_key": "3", "media_id": "3", "media_orig_id": "3" },
+      { "branch_id": "1", "media_key": "4", "media_id": "4", "media_orig_id": "4" },
+      { "branch_id": "1", "media_key": "5", "media_id": "5", "media_orig_id": "5" },
+      { "branch_id": "1", "media_key": "6", "media_id": "6", "media_orig_id": "6" },
+      { "branch_id": "1", "media_key": "7", "media_id": "7", "media_orig_id": "7" },
+      { "branch_id": "1", "media_key": "8", "media_id": "8", "media_orig_id": "8" },
+      { "branch_id": "1", "media_key": "9", "media_id": "9", "media_orig_id": "9" },
+      { "branch_id": "1", "media_key": "10", "media_id": "10", "media_orig_id": "10" },
+      { "branch_id": "1", "media_key": "11", "media_id": "11", "media_orig_id": "11" },
+      { "branch_id": "1", "media_key": "12", "media_id": "12", "media_orig_id": "12" },
+      { "branch_id": "1", "media_key": "13", "media_id": "13", "media_orig_id": "13" },
+    ]
+  }
+}
