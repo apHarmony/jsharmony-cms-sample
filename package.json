@@ -1,6 +1,6 @@
 {
   "name": "jsharmony-cms-sample",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "jsHarmony CMS Sample Project",
   "main": "app.js",
   "scripts": {
@@ -26,14 +26,10 @@
   "homepage": "https://github.com/apHarmony/jsharmony-cli",
   "dependencies": {
     "async": "^2.6.2",
-    "aws-sdk": "^2.522.0",
-    "jsharmony": "^1.0.0",
+    "jsharmony": "^1.1.0",
+    "jsharmony-factory": "^1.1.0",
     "jsharmony-cms": "^1.0.0",
-    "jsharmony-db": "^1.0.0",
-    "jsharmony-db-mssql": "^1.0.0",
     "jsharmony-db-sqlite": "^1.0.0",
-    "jsharmony-factory": "^1.0.0",
-    "jsharmony-validate": "^1.0.0",
     "lodash": "^4.17.19",
     "winser": "^1.0.2"
   },
