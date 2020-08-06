@@ -1,6 +1,6 @@
 {
   "name": "jsharmony-cms-sample",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "jsHarmony CMS Sample Project",
   "main": "app.js",
   "scripts": {
@@ -16,7 +16,7 @@
     "jsHarmony CMS",
     "Sample Site",
     "CMS",
-    "jsHarmony",
+    "jsHarmony"
   ],
   "author": "apHarmony <contact@apharmony.com> (http://www.apharmony.com/)",
   "license": "LGPL-3.0",
@@ -26,18 +26,14 @@
   "homepage": "https://github.com/apHarmony/jsharmony-cli",
   "dependencies": {
     "async": "^2.6.2",
-    "aws-sdk": "^2.522.0",
-    "jsharmony": "^1.0.0",
+    "jsharmony": "^1.1.0",
+    "jsharmony-factory": "^1.1.0",
     "jsharmony-cms": "^1.0.0",
-    "jsharmony-db": "^1.0.0",
-    "jsharmony-db-mssql": "^1.0.0",
     "jsharmony-db-sqlite": "^1.0.0",
-    "jsharmony-factory": "^1.0.0",
-    "jsharmony-validate": "^1.0.0",
-    "lodash": "^4.17.14",
+    "lodash": "^4.17.19",
     "winser": "^1.0.2"
   },
   "devDependencies": {
-    "mocha": "^7.1.2"
+    "mocha": "^7.2.0"
   }
 }
