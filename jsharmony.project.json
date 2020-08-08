@@ -1,0 +1,11 @@
+{
+  "database": {
+    "type": ["mssql","pgsql","sqlite"]
+  },
+  "installer": {
+    "init_jsharmony_factory": true,
+    "sapmle_data": true,
+    "script_pre_install": "init/pre_install.js",
+    "script_post_install": "init/post_install.js"
+  }
+}
