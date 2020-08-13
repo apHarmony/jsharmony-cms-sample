@@ -1,5 +1,5 @@
 /app.config.*.js
 /node_modules
-/cert/localhost-cert.pem
-/cert/localhost-key.pem
+/cert
 /data
+/dist

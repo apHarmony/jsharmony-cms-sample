@@ -1,1 +1,0 @@
-openssl req -new -x509 -nodes -days 3650 -newkey rsa:2048 -keyout localhost-key.pem -out localhost-cert.pem -config req.conf -extensions 'v3_req'
