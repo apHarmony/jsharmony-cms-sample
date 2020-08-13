@@ -1,0 +1,26 @@
+{
+  "database": {
+    "type": ["mssql","sqlite"]
+  },
+  "installer": {
+    "jsharmony_factory": true,
+    "jsharmony_factory_client_portal": false,
+    "script_pre_install": "init/install.pre.js",
+    "script_post_install": "init/install.post.js",
+    "executables": [
+      "app.js"
+    ],
+    "generate_self_signed_certs": [
+      {
+        "key": "cert/localhost.key",
+        "cert": "cert/localhost.crt"
+      }
+    ],
+    "generate_nstart": true
+  },
+  "package": {
+    "dependencies": {
+      "jsharmony-cms": "^1.0.0"
+    }
+  }
+}
