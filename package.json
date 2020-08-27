@@ -1,6 +1,6 @@
 {
   "name": "jsharmony-cms-sample",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "jsHarmony CMS Sample Project",
   "main": "app.js",
   "scripts": {
@@ -30,6 +30,7 @@
     "jsharmony-factory": "^1.1.0",
     "jsharmony-cms": "^1.0.0",
     "jsharmony-db-sqlite": "^1.0.0",
+    "jsharmony-image-sharp": "^1.0.0",
     "lodash": "^4.17.19",
     "winser": "^1.0.2"
   },

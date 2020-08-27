@@ -15,6 +15,8 @@ exports = module.exports = function(jsh, config, dbconfig){
     editor_site_port: 8082,
     publish_preview_site_port: 8083,
   });
+  
+  jsh.Extensions.image = require('jsharmony-image-sharp');
 
   //Database Configuration
   dbconfig['default'] = { _driver: new sqliteDBDriver(), database: "data/db/project.db"};

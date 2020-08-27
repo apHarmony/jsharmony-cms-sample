@@ -20,7 +20,8 @@
   },
   "package": {
     "dependencies": {
-      "jsharmony-cms": "^1.0.0"
+      "jsharmony-cms": "^1.0.0",
+      "jsharmony-image-sharp": "^1.0.0"
     }
   }
 }
