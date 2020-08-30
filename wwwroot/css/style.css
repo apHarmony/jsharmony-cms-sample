@@ -84,8 +84,8 @@ h5 {
 a:link,
 a:visited
 {
-	color: #555;
-	text-decoration: none;
+  color: #4686df;
+  text-decoration: none;
 }
 a:hover
 {
@@ -278,8 +278,8 @@ HEADER
 #xnav a:link,
 #xnav a:visited
 {
-	/*color: #ededed;*/
-	text-decoration: none;
+  color: #555;
+  text-decoration: none;
 }
 #xhead #xnav a:hover {
     color: #CF2927;
@@ -744,8 +744,9 @@ COMPONENTS
   box-sizing:border-box;
   font-size:1em;
 }
-.cmptTiles_tileLink {
+a.cmptTiles_tileLink {
   display:block;
+  color:#555;
 }
 .cmptTiles_tileTitle {
   display:block;
@@ -1238,7 +1239,8 @@ SIDE MENU
 	display:block;
 	text-decoration:none;
 	border-top:1px solid #f8f8f8;
-	vertical-align:middle;
+  vertical-align:middle;
+  color:#555;
 }
 .side_menu_pane a:hover {
   text-shadow: 2px 2px 5px rgba(80, 80, 80, 0.3);

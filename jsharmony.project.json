@@ -5,8 +5,9 @@
   "installer": {
     "jsharmony_factory": true,
     "jsharmony_factory_client_portal": false,
-    "script_pre_install": "init/install.pre.js",
-    "script_post_install": "init/install.post.js",
+    "scripts": {
+      "post_db_init": "init/init.db.post.js"
+    },
     "executables": [
       "app.js"
     ],
