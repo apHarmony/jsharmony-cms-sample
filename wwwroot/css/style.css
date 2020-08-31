@@ -659,8 +659,9 @@ COMPONENTS
   white-space:normal;
   width: 0;
 }
-.cmptCarousel_tileLink {
+a.cmptCarousel_tileLink {
   display:block;
+  color:#555;
 }
 .cmptCarousel_tileTitle {
   display:block;
