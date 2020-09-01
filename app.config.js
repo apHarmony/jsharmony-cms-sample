@@ -64,7 +64,11 @@ exports = module.exports = function(jsh, config, dbconfig){
         
         var app = express();
         app.use(express.static('wwwroot'));
-        app.get('/', function(req, res){ res.send('This is the editor virtual site.' + (jsh.Servers['default']?'  Please access the CMS at: <a href="'+Helper.escapeHTML(jsh.Servers['default'].getURL())+'">'+jsh.Servers['default'].getURL()+'</a>':'')); });
+        app.get('/', function(req, res){
+          var hostname = req.headers.host;
+          if(hostname.indexOf(':')>=0) hostname = hostname.split(':')[0];
+          res.send('This is the editor virtual site.' + (jsh.Servers['default']?'  Please access the CMS at: <a href="'+Helper.escapeHTML(jsh.Servers['default'].getURL(hostname))+'">'+jsh.Servers['default'].getURL(hostname)+'</a>':''));
+        });
         var server = https.createServer(https_options, app);
         server.on('listening',function(){
           jsh.Log.info(`Editor site listening on https://localhost:${port}`);
@@ -85,7 +89,11 @@ exports = module.exports = function(jsh, config, dbconfig){
         
         var app = express();
         app.use(express.static('data/publish'));
-        app.get('/', function(req, res){ res.send('This is the publish preview site.  No index.html file found.' + (jsh.Servers['default']?'  Please publish from the CMS at: <a href="'+Helper.escapeHTML(jsh.Servers['default'].getURL())+'">'+jsh.Servers['default'].getURL()+'</a>':'')); });
+        app.get('/', function(req, res){
+          var hostname = req.headers.host;
+          if(hostname.indexOf(':')>=0) hostname = hostname.split(':')[0];
+          res.send('This is the publish preview site.  No index.html file found.' + (jsh.Servers['default']?'  Please publish from the CMS at: <a href="'+Helper.escapeHTML(jsh.Servers['default'].getURL(hostname))+'">'+jsh.Servers['default'].getURL(hostname)+'</a>':''));
+        });
         var server = https.createServer(https_options, app);
         server.on('listening',function(){
           jsh.Log.info(`Publish preview site listening on https://localhost:${port}`);
