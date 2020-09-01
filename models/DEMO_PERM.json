@@ -1,0 +1,25 @@
+{
+  "jsHarmonyCMS/Site_Deployment_Target_Role_Base": {
+    "inherits": "jsHarmonyCMS/Site_Deployment_Target_Role_Base",
+    "roles": { "WEBMASTER": "B" }
+  },
+  "jsHarmonyCMS/Site_Deployment_Target_Role": {
+    "inherits": "jsHarmonyCMS/Site_Deployment_Target_Role",
+    "roles": { "WEBMASTER": "B" }
+  },
+
+  "jsHarmonyCMS/Site_Deployment_Target_Tabs": {
+    "inherits": "jsHarmonyCMS/Site_Deployment_Target_Tabs",
+    "roles": { "WEBMASTER": "B" }
+  },
+
+  "jsHarmonyCMS/Site_Deployment_Target": {
+    "inherits": "jsHarmonyCMS/Site_Deployment_Target",
+    "roles": { "WEBMASTER": "B" }
+  },
+
+  "jsHarmonyCMS/Site": {
+    "inherits": "jsHarmonyCMS/Site",
+    "roles": { "WEBMASTER": "B" }
+  },
+}

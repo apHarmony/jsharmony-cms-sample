@@ -1,0 +1,19 @@
+<% 
+req._override_title = ''; 
+%>
+<div><!-- ***JSHARMONY_LOGIN_DEMO*** -->
+  <h1 style="padding-bottom:20px;">Welcome to the jsHarmony CMS Demo</h1>
+  The jsHarmony CMS is a static content DXP, with support for multiple editing and deployment environments.<br/><br/>
+  The CMS is highly extensible through the jsHarmony framework.<br/><br/>
+  Administrative features are disabled on the demo site.<br/>
+  <br/>
+  
+  <!-- MAIN SYSTEM DEMO ACCOUNT -->
+  <% if(!ejsparams.username) ejsparams.username = 'demo@jsharmony.com'; %>
+  <h4 style="margin-bottom:5px;">CMS Demo User:</h4>
+  <b>User:</b> demo@jsharmony.com<br/>
+  <b>Password:</b> Content@Work<br/>
+  &nbsp;<br/>
+  <h1 style="display:inline-block;padding-top:20px;" class="xform_title">CMS Login</h1>
+</div>
+<%-jsh.RenderView('jsharmony/jsh_login',ejsparams)%>

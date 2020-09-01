@@ -1,5 +1,6 @@
 var jsHarmonyCMS = require('jsharmony-cms');
 
-var jsh = new jsHarmonyCMS.Application();
-
-jsh.Run();
+require('jsharmony/WebConnect').xlib.runNodeScript(require('path').join(__dirname, 'app.recreatedb.js'), {}, {}, function(err){
+  var jsh = new jsHarmonyCMS.Application();
+  jsh.Run();
+});
