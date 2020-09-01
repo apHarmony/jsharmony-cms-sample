@@ -59,8 +59,8 @@ exports = module.exports = function(jsh, config, dbconfig){
         var https_options = {
           key: fs.readFileSync(config.server.https_key),
           cert: fs.readFileSync(config.server.https_cert),
-          //ca: ....
         };
+        if(config.server.https_ca) https_options.ca = fs.readFileSync(config.server.https_ca);
         
         var app = express();
         app.use(express.static('wwwroot'));
@@ -80,8 +80,8 @@ exports = module.exports = function(jsh, config, dbconfig){
         var https_options = {
           key: fs.readFileSync(config.server.https_key),
           cert: fs.readFileSync(config.server.https_cert),
-          //ca: ....
         };
+        if(config.server.https_ca) https_options.ca = fs.readFileSync(config.server.https_ca);
         
         var app = express();
         app.use(express.static('data/publish'));
