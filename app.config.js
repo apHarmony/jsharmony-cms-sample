@@ -57,7 +57,6 @@ exports = module.exports = function(jsh, config, dbconfig){
       //Set variables
       function(load_cb){
         configCMS.deployment_target_params.editor_site_port = config.app_settings.editor_site_port;
-        configCMS.deployment_target_params.publish_preview_site_port = config.app_settings.publish_preview_site_port;
         return load_cb();
       },
 
