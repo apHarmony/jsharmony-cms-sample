@@ -5,6 +5,8 @@ var path = require('path');
 var _ = require('lodash');
 var fs = require('fs');
 
+//return; //Uncomment to prevent recreating database
+
 var jsh = new jsHarmonyCMS.Application();
 jsh.Config.appbasepath = process.cwd();
 jsh.Config.silentStart = true;
@@ -14,7 +16,6 @@ jsh.Config.onConfigLoaded.push(function(cb){
   return cb();
 });
 jsh.Init(function(){
-  //return; //Uncomment to prevent recreating database
 
   var dbid = 'default';
   var db = jsh.DB[dbid];

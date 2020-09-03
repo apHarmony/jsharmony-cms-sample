@@ -13,4 +13,4 @@ update cms.page set page_author = (select sys_user_id from jsharmony.sys_user wh
 delete from jsharmony.sys_user_role where sys_user_id = (select sys_user_id from jsharmony.sys_user where sys_user_email = 'admin@jsharmony.com');
 delete from jsharmony.sys_user where sys_user_email = 'admin@jsharmony.com';
 
-update cms.deployment_target set deployment_target_params = replace(deployment_target_params, 'localhost:8082', 'cms.jsharmony.com:3302');
+update cms.deployment_target set deployment_target_params = replace(deployment_target_params, 'localhost:', 'cms.jsharmony.com:');
