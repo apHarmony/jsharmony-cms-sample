@@ -16,6 +16,7 @@ exports = module.exports = function(jsh, config, dbconfig){
     editor_site_port: 8082,
     publish_preview_site_port: 8083,
     cms_base_url: 'https://localhost:8081',
+    editor_site_base_url: 'https://localhost:8082',
   });
   
   jsh.Extensions.image = require('jsharmony-image-sharp');
@@ -56,7 +57,7 @@ exports = module.exports = function(jsh, config, dbconfig){
 
       //Set variables
       function(load_cb){
-        configCMS.deployment_target_params.editor_site_port = config.app_settings.editor_site_port;
+        configCMS.deployment_target_params.editor_site_base_url = config.app_settings.editor_site_base_url;
         return load_cb();
       },
 

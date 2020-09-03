@@ -5,7 +5,7 @@
         "site_id": 1, 
         "deployment_target_name": "01 / Local FS", 
         "deployment_target_publish_path": "",
-        "deployment_target_params": "{ \"env\": \"local\", \"editor_base_url\": \"https://localhost:%%%editor_site_port%%%\", \"publish_template_base_url\": \"https://localhost:%%%editor_site_port%%%\" }"
+        "deployment_target_params": "{ \"env\": \"local\", \"editor_base_url\": \"%%%editor_site_base_url%%%\", \"publish_template_base_url\": \"%%%editor_site_base_url%%%\" }"
       }
     ]
   },
