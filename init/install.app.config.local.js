@@ -4,6 +4,7 @@ exports = module.exports = function(appConfig, installerParams, callback){
 
     appConfig.body += "\r\n";
     appConfig.body += "  //jsHarmony CMS Sample Site Configuration\r\n";
+    appConfig.body += "  //config.app_settings.cms_base_url = 'https://localhost:8081';\r\n";
     appConfig.body += "  //config.app_settings.editor_site_port = 8082;\r\n";
     appConfig.body += "  //config.app_settings.publish_preview_site_port = 8083;\r\n";
 

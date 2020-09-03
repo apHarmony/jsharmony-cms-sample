@@ -6,6 +6,7 @@ var https = require('https');
 var sqliteDBDriver = require('jsharmony-db-sqlite');
 var express = require('jsharmony/lib/express');
 var Helper = require('jsharmony/Helper');
+var ejs = require('jsharmony/lib/ejs');
 
 exports = module.exports = function(jsh, config, dbconfig){
 
@@ -14,6 +15,7 @@ exports = module.exports = function(jsh, config, dbconfig){
   config.app_settings = _.extend(config.app_settings, {
     editor_site_port: 8082,
     publish_preview_site_port: 8083,
+    cms_base_url: 'https://localhost:8081',
   });
   
   jsh.Extensions.image = require('jsharmony-image-sharp');
@@ -52,6 +54,13 @@ exports = module.exports = function(jsh, config, dbconfig){
   config.onServerReady.push(function (cb, servers){
     async.waterfall([
 
+      //Set variables
+      function(load_cb){
+        configCMS.deployment_target_params.editor_site_port = config.app_settings.editor_site_port;
+        configCMS.deployment_target_params.publish_preview_site_port = config.app_settings.publish_preview_site_port;
+        return load_cb();
+      },
+
       //Load Virtual Site as container for Editor - Needed because this test site is not deployed
       function(load_cb){
         if(config.app_settings.editor_site_port === false) return;
@@ -63,6 +72,16 @@ exports = module.exports = function(jsh, config, dbconfig){
         if(config.server.https_ca) https_options.ca = fs.readFileSync(config.server.https_ca);
         
         var app = express();
+        app.get('/templates/page/:id.editor.html', function(req, res, next){
+          var fpath = path.join(__dirname, 'wwwroot', 'templates', 'page', req.params.id + '.editor.html');
+          fs.exists(fpath, function(exists){
+            if(!exists) return next();
+            fs.readFile(fpath, 'utf8', function(err, rslt){
+              if(err) return next();
+              res.send(ejs.render(rslt, { cms_base_url: config.app_settings.cms_base_url }));
+            });
+          });
+        });
         app.use(express.static('wwwroot'));
         app.get('/', function(req, res){
           var hostname = req.headers.host;
