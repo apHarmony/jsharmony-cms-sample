@@ -3,7 +3,6 @@ var async = require('async');
 var path = require('path');
 var fs = require('fs');
 var https = require('https');
-var sqliteDBDriver = require('jsharmony-db-sqlite');
 var express = require('jsharmony/lib/express');
 var Helper = require('jsharmony/Helper');
 var ejs = require('jsharmony/lib/ejs');
@@ -20,9 +19,6 @@ exports = module.exports = function(jsh, config, dbconfig){
   });
   
   jsh.Extensions.image = require('jsharmony-image-sharp');
-
-  //Database Configuration
-  dbconfig['default'] = { _driver: new sqliteDBDriver(), database: "data/db/project.db"};
 
   //Server Settings
   config.server.http_port = 8080;

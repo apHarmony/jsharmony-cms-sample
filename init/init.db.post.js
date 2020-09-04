@@ -1,8 +1,14 @@
 var jsHarmonyCMS = require('jsharmony-cms');
+var CLI = require('jsharmony/CLI');
 var HelperFS = require('jsharmony/HelperFS');
 var async = require('async');
 var path = require('path');
 var _ = require('lodash');
+
+var cliParams = CLI.readParameters({ name: 'init.db.post.js', parameters: {
+  'db-user': {'type': 'flag', 'args': ['Database Admin User']},
+  'db-pass': {'type': 'flag', 'args': ['Database Admin Password']},
+}}, process.argv.splice(2));
 
 var jsh = new jsHarmonyCMS.Application();
 jsh.Config.appbasepath = process.cwd();
@@ -18,11 +24,14 @@ jsh.Init(function(){
   var db = jsh.DB[dbid];
 
   var dbconfig = jsh.DBConfig[dbid];
+  dbconfig = _.extend({}, dbconfig);
   if(dbconfig.admin_user){
-    dbconfig = _.extend({}, dbconfig);
     dbconfig.user = dbconfig.admin_user;
     dbconfig.password = dbconfig.admin_password;
   }
+  if('db-user' in cliParams) dbconfig.user = cliParams['db-user'];
+  if('db-pass' in cliParams) dbconfig.password = cliParams['db-pass'];
+
 
   async.waterfall([
     function(cb){
