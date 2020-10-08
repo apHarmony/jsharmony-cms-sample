@@ -144,4 +144,7 @@
 
   .cmptTiles_tileTitle { font-size:1.1em; }
   .cmptTiles_tileBody { font-size:0.9em; }
+
+  .cmptListing_title { font-size:1.1em; }
+  .cmptListing_body { font-size:0.9em; }
 }

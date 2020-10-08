@@ -3,7 +3,6 @@ var async = require('async');
 var path = require('path');
 var fs = require('fs');
 var https = require('https');
-var sqliteDBDriver = require('jsharmony-db-sqlite');
 var express = require('jsharmony/lib/express');
 var Helper = require('jsharmony/Helper');
 var ejs = require('jsharmony/lib/ejs');
@@ -20,9 +19,6 @@ exports = module.exports = function(jsh, config, dbconfig){
   });
   
   jsh.Extensions.image = require('jsharmony-image-sharp');
-
-  //Database Configuration
-  dbconfig['default'] = { _driver: new sqliteDBDriver(), database: "data/db/project.db"};
 
   //Server Settings
   config.server.http_port = 8080;
@@ -107,6 +103,49 @@ exports = module.exports = function(jsh, config, dbconfig){
         if(config.server.https_ca) https_options.ca = fs.readFileSync(config.server.https_ca);
         
         var app = express();
+
+        //Handle SSI (Server-side include) via <!--#include virtual="..." -->
+        app.get(/^\/(.*(\.html|\/))?$/, function(req, res, next){
+          function getPage(page_url, parent_pages, cb){
+            if(!page_url) page_url = 'index.html';
+            if(page_url[page_url.length-1]=='/') page_url += 'index.html';
+            if(_.includes(parent_pages, page_url)) return cb(null, new Error('Server-side include loop'));
+            parent_pages.push(page_url);
+
+            var base_path = path.join(__dirname,'data/publish');
+            var page_fpath = path.join(base_path,page_url);
+
+            page_fpath = path.normalize(page_fpath);
+            if(page_fpath.indexOf(base_path+path.sep) !== 0) return next();
+
+            fs.exists(page_fpath, function(exists){
+              if(!exists) return cb(null, new Error('Page not found'));
+              fs.readFile(page_fpath, 'utf8', function(err, rslt){
+                if(err) return cb(null, err);
+                var includes = rslt.split('<!--#include virtual="');
+                async.eachOfSeries(includes, function(str, key, str_cb){
+                  if(key==0) return str_cb();
+                  var endTagIdx = str.indexOf('" -->');
+                  if(endTagIdx<0) return str_cb(new Error('No #include terminator found'));
+                  var include_url = str.substr(0, endTagIdx);
+                  getPage(include_url, parent_pages, function(rslt, err){
+                    if(err) return str_cb(err);
+                    includes[key] = rslt + str.substr(endTagIdx + 5);
+                    return str_cb();
+                  });
+                }, function(err){
+                  if(err) return cb(null, err);
+                  return cb(includes.join(''));
+                });
+              });
+            });
+          }
+          
+          getPage(req.params[0], [], function(rslt, err){
+            if(err) return next();
+            res.end(rslt);
+          });
+        }); 
         app.use(express.static('data/publish'));
         app.get('/', function(req, res){
           var hostname = req.headers.host;

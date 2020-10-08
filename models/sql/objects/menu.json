@@ -1,7 +1,7 @@
 {
   "cms.menu": {
     "columns": [
-      { "name": "media_id", "type": "bigint", "key": true, "identity": true, "null": false }
+      { "name": "menu_id", "type": "bigint", "key": true, "identity": true, "null": false }
     ],
     "sample_data": [
       { "menu_name": "Main Menu", "menu_tag": "main", "menu_template_id": "main", "menu_path": "/menu/", "_FILES": { "menu_site.json": "menu/{{menu_id}}.json" } },

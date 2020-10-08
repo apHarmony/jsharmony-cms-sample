@@ -12,9 +12,10 @@
       { "page_path": "/services/deliver-results/", "page_title": "Deliver Results", "page_author": 1, "page_template_id": "default", "_FILES": { "page_services_deliverResults.json": "page/{{page_id}}.json" } },
       { "page_path": "/services/improve-forecasts/", "page_title": "Improve Forecasts", "page_author": 1, "page_template_id": "default", "_FILES": { "page_services_improveForecasts.json": "page/{{page_id}}.json" } },
       { "page_path": "/contact/", "page_title": "Contact", "page_author": 1, "page_template_id": "default", "_FILES": { "page_contact.json": "page/{{page_id}}.json" } },
-      { "_FILES": { "page_careers.json": "page/9.json" } },
-      { "_FILES": { "page_testimonials.json": "page/10.json" } },
-      { "_FILES": { "page_careers_designer.json": "page/11.json" } },
+      { "page_path": "/elements/app-animation.html", "page_title": "App Animation", "page_author": 1, "page_template_id": "blank", "_FILES": { "page_app_animation.json": "page/{{page_id}}.json" } },
+      { "_FILES": { "page_careers.json": "page/10.json" } },
+      { "_FILES": { "page_testimonials.json": "page/11.json" } },
+      { "_FILES": { "page_careers_designer.json": "page/12.json" } },
     ]
   },
   "cms.branch_page": {
@@ -31,6 +32,7 @@
       { "branch_id": "1", "page_key": "6", "page_id": "6", "page_orig_id": "6" },
       { "branch_id": "1", "page_key": "7", "page_id": "7", "page_orig_id": "7" },
       { "branch_id": "1", "page_key": "8", "page_id": "8", "page_orig_id": "8" },
+      { "branch_id": "1", "page_key": "9", "page_id": "9", "page_orig_id": "9" },
     ]
   }
 }

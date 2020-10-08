@@ -20,6 +20,12 @@
       { "media_path": "/video/waves.mp4", "media_ext": ".mp4", "media_size": 2873467, "media_desc": "Waves crashing on the beach", "media_tags": "Waves, Beach, Ocean", "media_type": "VIDEO", "_FILES": { "waves.mp4": "media/{{media_id}}.mp4" } },
       { "media_path": "/video/waves.webm", "media_ext": ".webm", "media_size": 774828, "media_desc": "Waves crashing on the beach", "media_tags": "Waves, Beach, Ocean", "media_type": "VIDEO", "_FILES": { "waves.mp4": "media/{{media_id}}.webm" } },
       { "media_path": "/video/waves.preview.jpg", "media_ext": ".jpg", "media_size": 316795, "media_width": 1280, "media_height": 720, "media_desc": "Waves crashing on the beach", "media_tags": "Waves, Beach, Ocean", "media_type": "PHOTO", "_FILES": { "waves.preview.jpg": "media/{{media_id}}.jpg" } },
+
+      { "media_path": "/pages/services/analytics.svg", "media_ext": ".svg", "media_size": 13356, "media_width": 	886, "media_height": 664, "media_desc": "Analytics", "media_tags": "Analytics, Reporting, Illustration", "media_type": "ILLUST", "_FILES": { "pages_services_analytics.svg": "media/{{media_id}}.svg" } },
+      { "media_path": "/pages/services/collaboration.svg", "media_ext": ".svg", "media_size": 9945, "media_width": 843, "media_height": 573, "media_desc": "Messaging", "media_tags": "Messaging, Illustration", "media_type": "ILLUST", "_FILES": { "pages_services_collaboration.svg": "media/{{media_id}}.svg" } },
+      { "media_path": "/pages/services/results.svg", "media_ext": ".svg", "media_size": 9296, "media_width": 767, "media_height": 589, "media_desc": "Tracking Results", "media_tags": "Results, Completion, Illustration", "media_type": "ILLUST", "_FILES": { "pages_services_results.svg": "media/{{media_id}}.svg" } },
+
+      { "media_path": "/scripts/animate.min.js", "media_ext": ".js", "media_size": 17324, "media_desc": "Anime.js Animation Library", "media_tags": "Anime, Anime.js", "media_type": "OTHER", "_FILES": { "scripts_anime.min.js": "media/{{media_id}}.js" } },
     ]
   },
   "cms.branch_media": {
@@ -41,6 +47,10 @@
       { "branch_id": "1", "media_key": "11", "media_id": "11", "media_orig_id": "11" },
       { "branch_id": "1", "media_key": "12", "media_id": "12", "media_orig_id": "12" },
       { "branch_id": "1", "media_key": "13", "media_id": "13", "media_orig_id": "13" },
+      { "branch_id": "1", "media_key": "14", "media_id": "14", "media_orig_id": "14" },
+      { "branch_id": "1", "media_key": "15", "media_id": "15", "media_orig_id": "15" },
+      { "branch_id": "1", "media_key": "16", "media_id": "16", "media_orig_id": "16" },
+      { "branch_id": "1", "media_key": "17", "media_id": "17", "media_orig_id": "17" },
     ]
   }
 }
