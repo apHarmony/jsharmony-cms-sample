@@ -1,0 +1,91 @@
+<%
+  var items = (data && data.items || []);
+  var previewSuffix = ((renderType=='gridRowDataPreview') || (renderType=='gridItemPreview')) ? '_preview' : '';
+
+  var wrapper = (properties.wrapper || '%%%CONTENT%%%').toString().split('%%%CONTENT%%%');
+  var wrapperPrefix = (wrapper.length >= 1) ? wrapper[0] : '';
+  var wrapperSuffix = (wrapper.length >= 2) ? wrapper[1] : '';
+%>
+<% if (items.length) { %>
+  <%-wrapperPrefix%>
+  <div class="cmptListing jsharmony_cms_component<%=previewSuffix%> <% if(!previewSuffix){ %>responsive<% } %> <%=properties.cssClass%>" style="<%=properties.cssStyle%>">
+    <% items.forEach(function(item, index) { %>
+      <%
+
+        //Item
+        var itemStyle = '';
+        if(properties.minItemHeight) itemStyle += 'min-height:'+properties.minItemHeight+';';
+
+        //Title
+        var showTitle = _.includes(['all','title'], item.contentLayout);
+
+        //Body
+        var showBody = _.includes(['all','body'], item.contentLayout);
+
+        //Image Container
+        var imageContainerClass = '';
+        if((properties.titlePosition=='top') || (properties.bodyPosition=='top')) imageContainerClass += ' cmptListing_imageContainer-contentAbove';
+        if((properties.titlePosition=='bottom') || (properties.bodyPosition=='bottom')) imageContainerClass += ' cmptListing_imageContainer-contentBelow';
+        var imageContainerStyle = '';
+        if(properties.imageWidth) imageContainerStyle += 'width:'+properties.imageWidth+';';
+        if(properties.minImageWidth) imageContainerStyle += 'min-width:'+properties.minImageWidth+';';
+        if(properties.maxImageWidth) imageContainerStyle += 'max-width:'+properties.maxImageWidth+';';
+
+        //Link
+        var linkOnClick = '';
+        var linkUrl = item.link||'';
+        if(previewSuffix){
+          linkOnClick = 'return false;';
+          if(linkUrl) linkUrl = '#';
+        }
+        else if(linkUrl.substr(0,3)=='js:'){
+          linkOnClick = linkUrl.substr(3) + '; return false;';
+          linkUrl = '#';
+        }
+
+      %>
+      <div class="cmptListing_item item<%=index%> <%=item.cssClass||''%>" style="<%=itemStyle%>" data-item="<%=index%>">
+        <a <% if(linkUrl){ %>href="<%=linkUrl%>"<% } %> <% if(linkOnClick){ %>onclick="<%=linkOnClick%>"<% } %> class="cmptListing_link <% if(linkUrl){ %>cmptListing_link-linked<% } %>" <%if(item.linkTarget){%>target="<%=item.linkTarget%>"<%}%>>
+
+          <% if(_.includes(['left','right','aboveTitle'], item.imagePosition)){ %>
+            <div class="cmptListing_imageContainer cmptListing_imageContainer-<%=item.imagePosition%> <%-imageContainerClass%>" style="<%-imageContainerStyle%>">
+              <% if(item.image){ %><img class="cmptListing_image" src="<%=item.image%>" /><% } %>
+            </div>
+            <div class="cmptListing_imageMargin cmptListing_imageMargin-<%=item.imagePosition%>"></div>
+          <% } %>
+
+          <div class="cmptListing_contentContainer">
+            <% if(showTitle){ %><h2 class="cmptListing_title" <% if(renderType=='gridItemPreview'){ %>data-component-title-editor="title"<% } %>><%-item.title%></h2><% } %>
+
+            <% if(_.includes(['belowTitle','belowTitleLeft','belowTitleRight'], item.imagePosition)){ %>
+              <div class="cmptListing_imageContainer cmptListing_imageContainer-<%=item.imagePosition%> <%-imageContainerClass%>" style="<%-imageContainerStyle%>">
+                <% if(item.image){ %><img class="cmptListing_image" src="<%=item.image%>" /><% } %>
+              </div>
+              <div class="cmptListing_imageMargin cmptListing_imageMargin-<%=item.imagePosition%>"></div>
+            <% } %>
+
+            <% if(showBody){ %><div class="cmptListing_body" <% if(renderType=='gridItemPreview'){ %>data-component-full-editor="body"<% } %>><%-item.body%></div><% } %>
+          </div>
+
+          <% if(_.includes(['belowBody'], item.imagePosition)){ %>
+            <div class="cmptListing_imageContainer cmptListing_imageContainer-<%=item.imagePosition%> <%-imageContainerClass%>" style="<%-imageContainerStyle%>">
+              <% if(item.image){ %><img class="cmptListing_image" src="<%=item.image%>" /><% } %>
+            </div>
+          <% } %>
+
+          <div style="clear:both;"></div>
+        </a>
+      </div>
+    <% }) %>
+  </div>
+  <%-wrapperSuffix%>
+<% } else if(isInEditor) { %>
+  <%-wrapperPrefix%>
+  <div class="cmptListing jsharmony_cms_component<%=previewSuffix%> empty <%=properties.cssClass%>" style="<%=properties.cssStyle%>;">
+    <div><h3>Listing</h3></div>
+    <div>
+      <span class="material-icons">view_headline</span>
+    </div>
+  </div>
+  <%-wrapperSuffix%>
+<% } %>

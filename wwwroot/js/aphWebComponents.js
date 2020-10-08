@@ -208,7 +208,8 @@ function aphCarousel(_jobj){
   for(var i=0;i<ocontainer.childNodes.length;i++){
     var otile = ocontainer.childNodes[i];
     if(otile.nodeType != Node.ELEMENT_NODE){
-      otile.remove();
+      if ('remove' in Element.prototype) otile.remove();
+      else ocontainer.removeChild(otile);
       i--;
     }
   }

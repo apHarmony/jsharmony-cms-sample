@@ -15,7 +15,8 @@
 
     //Video
     var videoHeight = properties.maxHeight || 400;
-    var videoStyle = 'height:'+videoHeight+'px;';
+    var videoStyle = 'min-height:'+videoHeight+'px;';
+    var videoContainerStyle = 'height:'+videoHeight+'px;';
 
     //Shadow
     var videoShadow = '';
@@ -35,7 +36,7 @@
       linkUrl = '#';
     }
   %>
-  <div class="cmptVideo jsharmony_cms_component<%=previewSuffix%> <%=videoShadow%> <% if(!previewSuffix){ %>responsive fullWidth<% } %> <%=properties.cssClass%>" style="<%=properties.cssStyle%>">
+  <div class="cmptVideo jsharmony_cms_component<%=previewSuffix%> <%=videoShadow%> <% if(!previewSuffix){ %>responsive fullWidth<% } %> <%=properties.cssClass%>" style="<%=videoContainerStyle%><%=properties.cssStyle%>">
     <video style="<%=videoStyle%>" class="cmptVideo_video" <% if(item.videoPreview){ %>poster="<%=item.videoPreview%>"<% } %> autoplay loop muted>
       <% if(item.videoMp4){ %><source type="video/mp4" src="<%=item.videoMp4%>" /><% } %>
       <% if(item.videoWebm){ %><source type="video/webm" src="<%=item.video_url_webm%>" /><% } %>
