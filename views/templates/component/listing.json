@@ -13,11 +13,11 @@
         "control": "textbox", "controlstyle": "width:80px", "controlparams": { "placeholder": "ex: 100px" },
       },
 
-      { "name": "minContentWidth", "caption": "Content Min Width", "type": "varchar", "default": "",
+      { "name": "minContentWidth", "caption": "Content Min Width", "type": "varchar", "default": "", "nl": false,
         "control": "textbox", "controlstyle": "width:80px", "controlparams": { "placeholder": "ex: 300px" },
       },
 
-      { "name": "imageWidth", "caption": "Image Width", "type": "varchar", "default": "", "nl": false,
+      { "name": "imageWidth", "caption": "Image Width", "type": "varchar", "default": "",
         "control": "textbox", "controlstyle": "width:80px", "controlparams": { "placeholder": "ex: 30%" },
       },
 
