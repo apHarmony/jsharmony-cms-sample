@@ -5,8 +5,6 @@
   var wrapper = (properties.wrapper || '%%%CONTENT%%%').toString().split('%%%CONTENT%%%');
   var wrapperPrefix = (wrapper.length >= 1) ? wrapper[0] : '';
   var wrapperSuffix = (wrapper.length >= 2) ? wrapper[1] : '';
-
-  var imageWidth = properties.imageWidth || '30%';
 %>
 <% if (items.length) { %>
   <%-wrapperPrefix%>
@@ -23,10 +21,12 @@
 
         //Body
         var showBody = _.includes(['all','body'], item.contentLayout);
-        var minContentWidth = '';
-        var minBodyWidth = '';
-        if(_.includes(['belowTitle','belowTitleLeft','belowTitleRight'], item.imagePosition)) minBodyWidth = item.minContentWidth || '300px';
-        else minContentWidth = item.minContentWidth || '300px';
+        var contentContainerStyle = '';
+        var bodyStyle = '';
+        if(item.minContentWidth){
+          if(_.includes(['belowTitle','belowTitleLeft','belowTitleRight'], item.imagePosition)) bodyStyle += 'min-width:' + item.minContentWidth;
+          else contentContainerStyle += 'min-width:' + item.minContentWidth;
+        }
         
 
         //Image Container
@@ -34,7 +34,7 @@
         if((properties.titlePosition=='top') || (properties.bodyPosition=='top')) imageContainerClass += ' cmptListing_imageContainer-contentAbove';
         if((properties.titlePosition=='bottom') || (properties.bodyPosition=='bottom')) imageContainerClass += ' cmptListing_imageContainer-contentBelow';
         var imageContainerStyle = '';
-        if(imageWidth) imageContainerStyle += 'width:'+imageWidth+';';
+        if(properties.imageWidth) imageContainerStyle += 'width:'+properties.imageWidth+';';
         if(properties.minImageWidth) imageContainerStyle += 'min-width:'+properties.minImageWidth+';';
         if(properties.maxImageWidth) imageContainerStyle += 'max-width:'+properties.maxImageWidth+';';
 
@@ -60,7 +60,7 @@
             </div>
           <% } %>
 
-          <div class="cmptListing_contentContainer" style="min-width:<%=minContentWidth%>">
+          <div class="cmptListing_contentContainer" style="<%-contentContainerStyle%>">
             <% if(showTitle){ %><h2 class="cmptListing_title" <% if(renderType=='gridItemPreview'){ %>data-component-title-editor="title"<% } %>><%-item.title%></h2><% } %>
 
             <% if(_.includes(['belowTitle','belowTitleLeft','belowTitleRight'], item.imagePosition)){ %>
@@ -69,7 +69,7 @@
               </div>
             <% } %>
 
-            <% if(showBody){ %><div class="cmptListing_body" style="min-width:<%=minBodyWidth%>" <% if(renderType=='gridItemPreview'){ %>data-component-full-editor="body"<% } %>><%-item.body%></div><% } %>
+            <% if(showBody){ %><div class="cmptListing_body" style="<%-bodyStyle%>" <% if(renderType=='gridItemPreview'){ %>data-component-full-editor="body"<% } %>><%-item.body%></div><% } %>
           </div>
 
           <% if(_.includes(['belowBody'], item.imagePosition)){ %>
