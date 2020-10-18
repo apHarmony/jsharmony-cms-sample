@@ -5,6 +5,8 @@
   var wrapper = (properties.wrapper || '%%%CONTENT%%%').toString().split('%%%CONTENT%%%');
   var wrapperPrefix = (wrapper.length >= 1) ? wrapper[0] : '';
   var wrapperSuffix = (wrapper.length >= 2) ? wrapper[1] : '';
+
+  var imageWidth = properties.imageWidth || '30%';
 %>
 <% if (items.length) { %>
   <%-wrapperPrefix%>
@@ -21,13 +23,18 @@
 
         //Body
         var showBody = _.includes(['all','body'], item.contentLayout);
+        var minContentWidth = '';
+        var minBodyWidth = '';
+        if(_.includes(['belowTitle','belowTitleLeft','belowTitleRight'], item.imagePosition)) minBodyWidth = item.minContentWidth || '300px';
+        else minContentWidth = item.minContentWidth || '300px';
+        
 
         //Image Container
         var imageContainerClass = '';
         if((properties.titlePosition=='top') || (properties.bodyPosition=='top')) imageContainerClass += ' cmptListing_imageContainer-contentAbove';
         if((properties.titlePosition=='bottom') || (properties.bodyPosition=='bottom')) imageContainerClass += ' cmptListing_imageContainer-contentBelow';
         var imageContainerStyle = '';
-        if(properties.imageWidth) imageContainerStyle += 'width:'+properties.imageWidth+';';
+        if(imageWidth) imageContainerStyle += 'width:'+imageWidth+';';
         if(properties.minImageWidth) imageContainerStyle += 'min-width:'+properties.minImageWidth+';';
         if(properties.maxImageWidth) imageContainerStyle += 'max-width:'+properties.maxImageWidth+';';
 
@@ -44,31 +51,29 @@
         }
 
       %>
-      <div class="cmptListing_item item<%=index%> <%=item.cssClass||''%>" style="<%=itemStyle%>" data-item="<%=index%>">
+      <div class="cmptListing_item cmptListing_item-<%=item.imagePosition%> item<%=index%> <%=item.cssClass||''%>" style="<%=itemStyle%>" data-item="<%=index%>">
         <a <% if(linkUrl){ %>href="<%=linkUrl%>"<% } %> <% if(linkOnClick){ %>onclick="<%=linkOnClick%>"<% } %> class="cmptListing_link <% if(linkUrl){ %>cmptListing_link-linked<% } %>" <%if(item.linkTarget){%>target="<%=item.linkTarget%>"<%}%>>
 
           <% if(_.includes(['left','right','aboveTitle'], item.imagePosition)){ %>
-            <div class="cmptListing_imageContainer cmptListing_imageContainer-<%=item.imagePosition%> <%-imageContainerClass%>" style="<%-imageContainerStyle%>">
+            <div class="cmptListing_imageContainer <%-imageContainerClass%>" style="<%-imageContainerStyle%>">
               <% if(item.image){ %><img class="cmptListing_image" src="<%=item.image%>" /><% } %>
             </div>
-            <div class="cmptListing_imageMargin cmptListing_imageMargin-<%=item.imagePosition%>"></div>
           <% } %>
 
-          <div class="cmptListing_contentContainer">
+          <div class="cmptListing_contentContainer" style="min-width:<%=minContentWidth%>">
             <% if(showTitle){ %><h2 class="cmptListing_title" <% if(renderType=='gridItemPreview'){ %>data-component-title-editor="title"<% } %>><%-item.title%></h2><% } %>
 
             <% if(_.includes(['belowTitle','belowTitleLeft','belowTitleRight'], item.imagePosition)){ %>
-              <div class="cmptListing_imageContainer cmptListing_imageContainer-<%=item.imagePosition%> <%-imageContainerClass%>" style="<%-imageContainerStyle%>">
+              <div class="cmptListing_imageContainer <%-imageContainerClass%>" style="<%-imageContainerStyle%>">
                 <% if(item.image){ %><img class="cmptListing_image" src="<%=item.image%>" /><% } %>
               </div>
-              <div class="cmptListing_imageMargin cmptListing_imageMargin-<%=item.imagePosition%>"></div>
             <% } %>
 
-            <% if(showBody){ %><div class="cmptListing_body" <% if(renderType=='gridItemPreview'){ %>data-component-full-editor="body"<% } %>><%-item.body%></div><% } %>
+            <% if(showBody){ %><div class="cmptListing_body" style="min-width:<%=minBodyWidth%>" <% if(renderType=='gridItemPreview'){ %>data-component-full-editor="body"<% } %>><%-item.body%></div><% } %>
           </div>
 
           <% if(_.includes(['belowBody'], item.imagePosition)){ %>
-            <div class="cmptListing_imageContainer cmptListing_imageContainer-<%=item.imagePosition%> <%-imageContainerClass%>" style="<%-imageContainerStyle%>">
+            <div class="cmptListing_imageContainer <%-imageContainerClass%>" style="<%-imageContainerStyle%>">
               <% if(item.image){ %><img class="cmptListing_image" src="<%=item.image%>" /><% } %>
             </div>
           <% } %>
