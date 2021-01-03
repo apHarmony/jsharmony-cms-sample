@@ -4,15 +4,20 @@ jsHarmony CMS Sample Project
 ## Installation
 
 1. Install the jsHarmony CLI, if not already installed
-   ````npm install -g jsharmony-cli````
+   ````
+   npm install -g jsharmony-cli
+   ````
    
 2. Create an empty folder for the project
    ````
    mkdir cms-sample
    cd cms-sample
    ````
+   
 3. Install jsharmony-cms-sample:
-   ````jsharmony create project https://github.com/apHarmony/jsharmony-cms-sample/archive/master.zip````
+   ````
+   jsharmony create project https://github.com/apHarmony/jsharmony-cms-sample/archive/master.zip
+   ````
    This will download the project from GitHub and install in the current folder
    The installer will generate the admin username and password
    
