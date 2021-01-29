@@ -1,0 +1,17 @@
+{
+  "title": "Blank",
+  "default_content": {
+    "body": "Page Content"
+  },
+  "remote_templates": {
+    "editor": "%%%editor_base_url%%%/templates/pages/blank.editor.html?page_key=%%%page_key%%%&page_id=%%%page_id%%%&branch_id=%%%branch_id%%%&page_template_id=%%%page_template_id%%%&env=%%%env%%%&_=%%%timestamp%%%",
+    "publish": "%%%publish_template_base_url%%%/templates/pages/blank.publish.html?_=%%%timestamp%%%"
+  },
+  "content_elements": {
+    "body": { "type": "htmleditor", "title": "Body" }
+  },
+  "properties": {
+    "fields": [
+    ]
+  }
+}

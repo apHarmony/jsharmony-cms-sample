@@ -3,9 +3,9 @@
   "title": "Banner",
   "caption": ["Banner", "Banners"],
   "icon": "material:image",
-  "remote_template": {
-    "editor": "%%%editor_base_url%%%/templates/component/banner.html?_=%%%timestamp%%%",
-    "publish": "%%%publish_template_base_url%%%/templates/component/banner.html?_=%%%timestamp%%%"
+  "remote_templates": {
+    "editor": "%%%editor_base_url%%%/templates/components/banner.html?_=%%%timestamp%%%",
+    "publish": "%%%publish_template_base_url%%%/templates/components/banner.html?_=%%%timestamp%%%"
   },
   "properties": {
     "fields": [

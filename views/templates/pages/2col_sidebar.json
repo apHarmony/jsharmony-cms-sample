@@ -1,14 +1,15 @@
 {
-  "title": "One-Column w/Sidebar",
+  "title": "Two-Column w/Sidebar",
   "default_content": {
     "body": "Page Content"
   },
-  "remote_template": {
-    "editor": "%%%editor_base_url%%%/templates/page/1col_sidebar.editor.html?page_key=%%%page_key%%%&page_id=%%%page_id%%%&branch_id=%%%branch_id%%%&page_template_id=%%%page_template_id%%%&env=%%%env%%%&_=%%%timestamp%%%",
-    "publish": "%%%publish_template_base_url%%%/templates/page/1col_sidebar.publish.html?_=%%%timestamp%%%"
+  "remote_templates": {
+    "editor": "%%%editor_base_url%%%/templates/pages/2col_sidebar.editor.html?page_key=%%%page_key%%%&page_id=%%%page_id%%%&branch_id=%%%branch_id%%%&page_template_id=%%%page_template_id%%%&env=%%%env%%%&_=%%%timestamp%%%",
+    "publish": "%%%publish_template_base_url%%%/templates/pages/2col_sidebar.publish.html?_=%%%timestamp%%%"
   },
   "content_elements": {
-    "body": { "type": "htmleditor", "title": "Body" }
+    "col1": { "type": "htmleditor", "title": "Column 1" },
+    "col2": { "type": "htmleditor", "title": "Column 2" }
   },
   "properties": {
     "fields": [

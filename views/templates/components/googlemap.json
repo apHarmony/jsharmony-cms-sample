@@ -3,9 +3,9 @@
   "title": "Google Map",
   "caption": ["Google Map", "Google Maps"],
   "icon": "material:map",
-  "remote_template": {
-    "editor": "%%%editor_base_url%%%/templates/component/googlemap.html?_=%%%timestamp%%%",
-    "publish": "%%%publish_template_base_url%%%/templates/component/googlemap.html?_=%%%timestamp%%%"
+  "remote_templates": {
+    "editor": "%%%editor_base_url%%%/templates/components/googlemap.html?_=%%%timestamp%%%",
+    "publish": "%%%publish_template_base_url%%%/templates/components/googlemap.html?_=%%%timestamp%%%"
   },
   "properties": {
     "fields": [

@@ -40,7 +40,7 @@ exports = module.exports = function(jsh, config, dbconfig){
     //On publish, copy files from wwwroot to publish folder
     configCMS.deployment_target_params.copy_folders.push(path.join(path.dirname(module.filename), '/wwwroot'));
     configCMS.defaultEditorConfig = {
-      webSnippets: '/templates/websnippet/index.html',
+      webSnippetsPath: '/templates/websnippets/index.html',
       materialIcons: true
     };
   }
@@ -68,8 +68,8 @@ exports = module.exports = function(jsh, config, dbconfig){
         if(config.server.https_ca) https_options.ca = fs.readFileSync(config.server.https_ca);
         
         var app = express();
-        app.get('/templates/page/:id.editor.html', function(req, res, next){
-          var fpath = path.join(__dirname, 'wwwroot', 'templates', 'page', req.params.id + '.editor.html');
+        app.get('/templates/pages/:id.editor.html', function(req, res, next){
+          var fpath = path.join(__dirname, 'wwwroot', 'templates', 'pages', req.params.id + '.editor.html');
           fs.exists(fpath, function(exists){
             if(!exists) return next();
             fs.readFile(fpath, 'utf8', function(err, rslt){
