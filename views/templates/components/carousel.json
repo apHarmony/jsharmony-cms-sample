@@ -1,11 +1,11 @@
 {
-  "id": "tiles",
-  "title": "Tiles",
-  "caption": ["Tile", "Tiles"],
-  "icon": "material:view_module",
-  "remote_template": {
-    "editor": "%%%editor_base_url%%%/templates/component/tiles.html?_=%%%timestamp%%%",
-    "publish": "%%%publish_template_base_url%%%/templates/component/tiles.html?_=%%%timestamp%%%"
+  "id": "carousel",
+  "title": "Carousel",
+  "caption": ["Item", "Items"],
+  "icon": "material:view_carousel",
+  "remote_templates": {
+    "editor": "%%%editor_base_url%%%/templates/components/carousel.html?_=%%%timestamp%%%",
+    "publish": "%%%publish_template_base_url%%%/templates/components/carousel.html?_=%%%timestamp%%%"
   },
   "properties": {
     "fields": [
@@ -25,6 +25,7 @@
 
       { "name": "bodyPosition", "type": "varchar", "control": "dropdown", "caption": "Body", "default": "bottom", "captionstyle":"margin-left:7px;", "nl": false,
         "lov": { "values": { "overlay": "Overlay Image", "top": "Above Image", "bottom": "Below Image", "none": "None" } }},
+
 
       { "name": "cssStyle", "caption": "CSS Style", "type": "varchar", "length": 1024,
         "control": "textbox", "controlstyle": "width:260px", "validate": ["MaxLength:1024"]},
@@ -57,7 +58,7 @@
 
       { "name": "contentOverlayShadow", "type": "varchar", "control": "dropdown", "caption": "Shadow Overlay", "default": "none",
         "lov": { "values": { "none": "None", "light_full": "Light Shadow", "heavy_full": "Heavy Shadow" } }},
-
+  
       { "name": "cssClass", "caption": "CSS Class", "type": "varchar", "length": 1024, "captionstyle":"margin-left:7px;", "nl": false,
         "control": "textbox", "controlstyle": "width:320px", "validate": ["MaxLength:1024"]},
 

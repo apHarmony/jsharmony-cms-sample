@@ -1,0 +1,7 @@
+{
+  "title": "Sidebar",
+  "remote_templates": {
+    "editor": "%%%editor_base_url%%%/templates/components/sidebar.html?_=%%%timestamp%%%",
+    "publish": "%%%publish_template_base_url%%%/templates/components/sidebar.html?_=%%%timestamp%%%"
+  }
+}

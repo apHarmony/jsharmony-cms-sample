@@ -1,8 +1,0 @@
-{
-  "title": "Footer Menu",
-  "content_elements": {
-    "footer": {
-      "remote_template": "%%%publish_template_base_url%%%/templates/menu/footer.html?_=%%%timestamp%%%"
-    }
-  }
-}
