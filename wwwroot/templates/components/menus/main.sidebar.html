@@ -27,10 +27,9 @@
       if(menu_item.menu_item_link_type || menu_item.menu_item_children.length){
         %><a data-id="<%=menu_item.menu_item_id%>"<% if(menu_item.menu_item_class){ %> class="<%=menu_item.menu_item_class%>"<%}%><% if(menu_item.menu_item_style){ %> style="<%=menu_item.menu_item_style%>"<%}%><%
         if(menu_item.menu_item_link_type.toString().toUpperCase()=='JS'){
-          %> href="#" onclick="<%=menu_item.menu_item_link_dest%>; return side_menu_click(this);"<%
+          %> href="#" onclick="<%=getMenuURL(menu_item)%>; return side_menu_click(this);"<%
         } else if(menu_item.menu_item_link_type) {
-          if(isInEditor) menu_item.menu_item_link_dest = '#';
-          %> href="<%=menu_item.menu_item_link_dest%>" onclick="return side_menu_click(this);"<%
+          %> href="<%=getMenuURL(menu_item)%>" onclick="return side_menu_click(this);"<%
           if((menu_item.menu_item_link_target||'').toUpperCase()=='NEWWIN'){ %> target="_blank"<% }
         } else {
           %> href="#" onclick="return side_menu_click(this);"<%

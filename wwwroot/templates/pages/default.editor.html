@@ -15,7 +15,7 @@
 
 </head>
 
-<body class="cms_editor" data-jsharmony_cms_onApplyProperties="setClass(page.properties.bodyClass); setStyle(page.properties.bodyStyle);">
+<body class="cms_editor" cms-onRender="setClass(page.properties.bodyClass); setStyle(page.properties.bodyStyle);">
   <script type="text/javascript" src="<%=cms_base_url%>/js/jsHarmonyCMS.js"></script>
   <div id="body_wrapper"><div id="body_inner">
 
@@ -28,19 +28,19 @@
         <div class="xtoplinks"></div>
         <a id="xmore" href="#" onclick="xmore_click(); return false;"></a>
         <div id="xlogo2"><a href="/"><img src="/images/logo.header.png" alt="Company" /></a></div>
-        <div id="xnav" class="jsharmony_cms_menu" data-menu_tag="main" data-menu_content_element="top"></div>
+        <div id="xnav" cms-component="menus/main.top" cms-menu-tag="main"></div>
         <div class="clear" id="afterxnav"></div>
       </div>
       <div id="is_mobile"></div>
       <div class="xhead_body">
-        <h1 class="bg" id="jsharmony_cms_title" data-jsharmony_cms_onApplyProperties="toggle(page.properties.showTitle!='N');"></h1>
+        <h1 cms-title class="bg" cms-onRender="toggle(page.properties.showTitle!='N');"></h1>
       </div>
     </div><!-- xhead -->
 
     <div id="xcontentwrap"><div id="xcontent">
       <!-- Content -->
 
-      <div class="xcontentpanel jsharmony_cms_content" data-id="body"></div>
+      <div class="xcontentpanel" cms-content-editor="body"></div>
       
       <!-- End of Content -->
       <div style="clear:both;"></div>
@@ -64,7 +64,7 @@
         </div>
       </div>
       <div class="xsitemap_container">
-        <div class="xsitemap d1 jsharmony_cms_menu" data-menu_tag="footer" data-menu_content_element="footer"></div>
+        <div class="xsitemap d1" cms-component="menus/footer" cms-menu-tag="footer"></div>
       </div>
       <div class="clear"></div>
       <div class="xfooter_bottom">
@@ -76,7 +76,7 @@
       <div class="clear"></div>
     </div></div><!-- xfooter -->
   </div></div><!-- body_wrapper,body_inner -->
-  <div id="side_menu_wrapper" class="jsharmony_cms_menu" data-menu_tag="main" data-menu_content_element="sidebar"></div><!-- side_menu_wrapper -->
+  <div id="side_menu_wrapper" cms-component="menus/main.sidebar" cms-menu-tag="main"></div><!-- side_menu_wrapper -->
   <div id="content_block"></div>
   <div id="jsharmony_cms_footer"></div>
 </body>

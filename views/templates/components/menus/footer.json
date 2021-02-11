@@ -1,0 +1,8 @@
+{
+  "title": "Footer Menu",
+  "target": "page",
+  "remote_templates": {
+    "editor": "%%%editor_base_url%%%/templates/components/menus/footer.html?_=%%%timestamp%%%",
+    "publish": "%%%publish_template_base_url%%%/templates/components/menus/footer.html?_=%%%timestamp%%%"
+  }
+}

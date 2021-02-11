@@ -33,7 +33,7 @@
         <div class="xtoplinks"></div>
         <a id="xmore" href="#" onclick="xmore_click(); return false;"></a>
         <div id="xlogo2"><a href="/"><img src="/images/logo.header.png" alt="Company" /></a></div>
-        <div id="xnav" class="jsharmony_cms_menu" data-menu_tag="main" data-menu_content_element="top"><%-renderMenu('main','top')%></div>
+        <div id="xnav"><%-renderComponent('menus/main.top',{'menu_tag':'main'})%></div>
         <div class="clear" id="afterxnav"></div>
       </div>
       <div id="is_mobile"></div>
@@ -45,7 +45,7 @@
     <div id="xcontentwrap"><div id="xcontent">
       <!-- Content -->
 
-      <div class="xcontentpanel jsharmony_cms_content" data-id="body"><%-page.content.body%></div>
+      <div class="xcontentpanel"><%-page.content.body%></div>
       
       <!-- End of Content -->
       <div style="clear:both;"></div>
@@ -69,7 +69,7 @@
         </div>
       </div>
       <div class="xsitemap_container">
-        <div class="xsitemap d1 jsharmony_cms_menu" data-menu_tag="footer" data-menu_content_element="footer"><%-renderMenu('footer')%></div>
+        <div class="xsitemap d1"><%-renderComponent('menus/footer',{'menu_tag':'footer'})%></div>
       </div>
       <div class="clear"></div>
       <div class="xfooter_bottom">
@@ -81,7 +81,7 @@
       <div class="clear"></div>
     </div></div><!-- xfooter -->
   </div></div><!-- body_wrapper,body_inner -->
-  <div id="side_menu_wrapper" class="jsharmony_cms_menu" data-menu_tag="main" data-menu_content_element="sidebar"><%-renderMenu('main','sidebar')%></div><!-- side_menu_wrapper -->
+  <div id="side_menu_wrapper"><%-renderComponent('menus/main.sidebar',{'menu_tag':'main'})%></div><!-- side_menu_wrapper -->
   <div id="content_block"></div>
   <%-page.footer%>
 </body>

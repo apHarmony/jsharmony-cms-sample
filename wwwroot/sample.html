@@ -26,7 +26,7 @@
         <div class="xtoplinks"></div>
         <a id="xmore" href="#" onclick="xmore_click(); return false;"></a>
         <div id="xlogo2"><a href="/"><img src="/images/logo.header.png" alt="Company" /></a></div>
-        <div id="xnav" class="jsharmony_cms_menu" data-menu_tag="main" data-menu_content_element="top"></div>
+        <div id="xnav" cms-component="menus/main.top" cms-menu-tag="main"></div>
         <div class="clear" id="afterxnav"></div>
       </div>
       <div id="is_mobile"></div>
@@ -37,7 +37,7 @@
     <div id="xcontentwrap"><div id="xcontent">
       <!-- Content -->
 
-      <div class="xcontentpanel jsharmony_cms_content" data-id="body">
+      <div class="xcontentpanel" cms-content-editor="body">
         <div class="mceTmpl pnlIcons">
           <div class="pnlIcons_item">
             <div class="pnlIcons_icon"><span class="material-icons">&#xe869;</span></div>
@@ -80,7 +80,7 @@
         </div>
       </div>
       <div class="xsitemap_container">
-        <div class="xsitemap d1 jsharmony_cms_menu" data-menu_tag="footer" data-menu_content_element="footer"></div>
+        <div class="xsitemap d1" cms-component="menus/footer" cms-menu-tag="footer"></div>
       </div>
       <div class="clear"></div>
       <div class="xfooter_bottom">
@@ -92,7 +92,7 @@
       <div class="clear"></div>
     </div></div><!-- xfooter -->
   </div></div><!-- body_wrapper,body_inner -->
-  <div id="side_menu_wrapper" class="jsharmony_cms_menu" data-menu_tag="main" data-menu_content_element="sidebar"></div><!-- side_menu_wrapper -->
+  <div id="side_menu_wrapper" cms-component="menus/main.sidebar" cms-menu-tag="main"></div><!-- side_menu_wrapper -->
   <div id="content_block"></div>
 </body>
 </html>
