@@ -4,7 +4,7 @@
 /* Create branch for new careers page */
 insert into cms.v_my_current_branch(branch_parent_id, branch_type, branch_name) values(1, 'USER', 'Add Careers Page');
 /* Create careers page */
-insert into cms.v_my_page(page_path, page_title, page_template_id) values('/careers/', 'Careers', '2col_sidebar');
+insert into cms.v_my_page(page_path, page_title, page_template_id) values('/careers/index.html', 'Careers', '2col_sidebar');
 /* Update sitemap */
 update cms.v_my_sitemap set sitemap_file_id=null where sitemap_type='PRIMARY';
 /* Update footer menu */
@@ -15,7 +15,7 @@ update cms.branch set branch_sts='REVIEW' where branch_id=cms.my_current_branch_
 /* Create branch for new testimonials page */
 insert into cms.v_my_current_branch(branch_parent_id, branch_type, branch_name) values(1, 'USER', 'Add Testimonials Page');
 /* Create careers page */
-insert into cms.v_my_page(page_path, page_title) values('/testimonials/', 'Testimonials');
+insert into cms.v_my_page(page_path, page_title) values('/testimonials/index.html', 'Testimonials');
 /* Update sitemap */
 update cms.v_my_sitemap set sitemap_file_id=null where sitemap_type='PRIMARY';
 /* Update site menu */

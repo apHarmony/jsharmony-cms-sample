@@ -4,7 +4,7 @@
       { "name": "redirect_id", "type": "bigint", "key": true, "identity": true, "null": false }
     ],
     "sample_data": [
-      { "redirect_url": "/page/", "redirect_url_type": "BEGINS", "redirect_seq": 1, "redirect_dest": "/", "redirect_http_code": "302" },
+      { "site_id": 1, "redirect_url": "/page/", "redirect_url_type": "BEGINS", "redirect_seq": 1, "redirect_dest": "/", "redirect_http_code": "302" },
     ]
   },
   "cms.branch_redirect": {
