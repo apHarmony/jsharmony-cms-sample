@@ -10,7 +10,6 @@
     ],
     "data_keys": ["branch_id","sitemap_key"],
     "sample_data": [
-      { "branch_id": "1", "sitemap_key": "1", "sitemap_id": "1", "sitemap_orig_id": "1" },
     ]
   }
 }

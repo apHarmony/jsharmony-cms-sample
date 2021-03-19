@@ -2,13 +2,12 @@
   "cms.branch": {
     "data_keys": ["branch_id"],
     "sample_data": [
-      { "branch_name": "master", "branch_type": "PUBLIC", "branch_sts": "ACTIVE", "site_id": 1 }
     ]
   },
-  "cms.sys_user_branch": {
+  "cms.sys_user_site": {
     "data_keys": ["sys_user_id"],
     "sample_data": [
-      { "branch_id": "1", "sys_user_id": "1" }
+      { "site_id": 1, "branch_id": "1", "sys_user_id": "1" }
     ]
   },
 }

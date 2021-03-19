@@ -38,7 +38,7 @@ exports = module.exports = function(jsh, config, dbconfig){
   if(configCMS){
     configCMS.git.enabled = true;
     //On publish, copy files from wwwroot to publish folder
-    configCMS.deployment_target_params.copy_folders.push(path.join(path.dirname(module.filename), '/wwwroot'));
+    configCMS.deployment_target_publish_config.copy_folders.push(path.join(path.dirname(module.filename), '/wwwroot'));
     configCMS.defaultEditorConfig = {
       webSnippetsPath: '/templates/websnippets/index.html',
       materialIcons: true

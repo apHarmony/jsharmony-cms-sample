@@ -1,6 +1,6 @@
 {
   "database": {
-    "type": ["mssql","sqlite"]
+    "type": ["mssql","pgsql","sqlite"]
   },
   "installer": {
     "jsharmony_factory": true,
