@@ -7,7 +7,7 @@ insert into jsharmony.sys_user_role (sys_user_id, sys_role_name)
   select sys_user.sys_user_id,sys_role.sys_role_name
     from jsharmony.sys_user
     inner join jsharmony.sys_role on 1=1
-    where sys_user_email in ('demo@jsharmony.com') and sys_role.sys_role_name not in ('DEV','SYSADMIN'); 
+    where sys_user_email in ('demo@jsharmony.com') and sys_role.sys_role_name not in ('DEV','SYSADMIN','*'); 
 
 update cms.page set page_author = (select sys_user_id from jsharmony.sys_user where sys_user_email = 'demo@jsharmony.com');
 delete from jsharmony.sys_user_role where sys_user_id = (select sys_user_id from jsharmony.sys_user where sys_user_email = 'admin@jsharmony.com');
