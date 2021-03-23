@@ -26,11 +26,11 @@
   "homepage": "https://github.com/apHarmony/jsharmony-cli",
   "dependencies": {
     "async": "^2.6.2",
-    "jsharmony": "^1.1.0",
-    "jsharmony-factory": "^1.1.0",
-    "jsharmony-cms": "^1.0.0",
-    "jsharmony-db-sqlite": "^1.0.0",
-    "jsharmony-image-sharp": "^1.0.0",
+    "jsharmony": "1.1.242",
+    "jsharmony-factory": "1.1.116",
+    "jsharmony-cms": "1.0.35",
+    "jsharmony-db-sqlite": "1.1.48",
+    "jsharmony-image-sharp": "1.0.5",
     "lodash": "^4.17.19",
     "winser": "^1.0.2"
   },
