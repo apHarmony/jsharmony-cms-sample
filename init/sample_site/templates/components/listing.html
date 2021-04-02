@@ -1,0 +1,179 @@
+<script type="text/cms-component-config">
+  {
+    "title": "Listing",
+    "caption": ["Item", "Items"],
+    "multiple_items": true,
+    "icon": "material:view_headline",
+    "component_properties": {
+      "fields": [
+        { "name": "minItemHeight", "caption": "Row Min Height",
+          "control": "textbox", "controlstyle": "width:80px", "controlparams": { "placeholder": "ex: 100px" },
+        },
+  
+        { "name": "minContentWidth", "caption": "Content Min Width", "newline": false,
+          "control": "textbox", "controlstyle": "width:80px", "controlparams": { "placeholder": "ex: 300px" },
+        },
+  
+        { "name": "imageWidth", "caption": "Image Width",
+          "control": "textbox", "controlstyle": "width:80px", "controlparams": { "placeholder": "ex: 30%" },
+        },
+  
+        { "name": "minImageWidth", "caption": "Min Width", "newline": false,
+          "control": "textbox", "controlstyle": "width:80px", "controlparams": { "placeholder": "ex: 100px" },
+        },
+  
+        { "name": "maxImageWidth", "caption": "Max Width", "newline": false,
+          "control": "textbox", "controlstyle": "width:80px", "controlparams": { "placeholder": "ex: 400px" },
+        },
+  
+        { "name": "cssStyle", "caption": "CSS Style", "control": "textbox", "controlstyle": "width:260px" },
+  
+        { "name": "cssClass", "caption": "CSS Class", "control": "textbox", "controlstyle": "width:260px",
+          "lov": { "values": {
+            "cmptListing-checklist":"cmptListing-checklist :: Checkboxes",
+            "cmptListing-redArrowTitle":"cmptListing-redArrowTitle :: Title w/Red Arrow on Links"
+          } },
+          "hints": { "separator": " ", "caption": "Add CSS Classes" }
+        },
+  
+        { "name": "wrapper", "caption": "Wrapper",
+          "control": "textarea", "controlstyle": "height:150px;width:260px",
+          "validate": [
+            { "function":"js:if(_obj.wrapper && ((_obj.wrapper||'').toString().indexOf('%%%CONTENT%%%') <= 0)) return 'Wrapper requires %%%CONTENT%%% flag';" },
+            { "function":"js:if(_obj.wrapper && ((_obj.wrapper||'').toString().split('%%%CONTENT%%%').length > 2)) return 'Wrapper can only have one %%%CONTENT%%% flag';" }
+          ]
+        },
+        
+        { "control": "html", "value": "<b>Example:</b> &lt;div&gt;%%%CONTENT%%%&lt;/div&gt;", "newline": true },
+      ]
+    },
+    "item_properties": {
+      "popup": [500,200],
+      "fields": [
+        { "name": "image", "caption": "Image", "control": "media_browser"},
+        { "name": "link", "caption": "Link", "control": "link_browser"},
+  
+        { "name": "linkTarget", "control": "dropdown", "caption": "Link Target",
+            "lov": { "values": { "": "Same Window", "_blank": "New Window" } }},
+  
+        { "name": "imagePosition", "control": "dropdown", "caption": "Image Position", "default": "left",
+          "lov": { "values": {
+            "left": "Left",
+            "right": "Right",
+            "aboveTitle": "Above Title",
+            "belowTitle": "Below Title",
+            "belowTitleLeft": "Below Title :: Left",
+            "belowTitleRight": "Below Title :: Right",
+            "belowBody": "Below Body",
+            "none": "None"
+        } }},
+  
+        { "name": "contentLayout", "control": "dropdown", "caption": "Content", "default": "all", "newline": false,
+          "lov": { "values": { "all": "Title + Body", "title": "Title Only", "body": "Body Only", "none": "No Title or Body" } }},    
+  
+        { "name": "cssClass", "caption": "CSS Class", "captionstyle":"margin-left:7px;", "newline": false,
+          "control": "textbox", "controlstyle": "width:320px"},
+  
+        { "name": "title", "control": "htmleditor" },
+        { "name": "body", "control": "htmleditor" },
+      ]
+    }
+  }
+</script>
+
+<%
+  var items = (data && data.items || []);
+  var previewSuffix = ((renderType=='gridRowDataPreview') || (renderType=='gridItemPreview')) ? '_preview' : '';
+
+  var wrapper = (properties.wrapper || '%%%CONTENT%%%').toString().split('%%%CONTENT%%%');
+  var wrapperPrefix = (wrapper.length >= 1) ? wrapper[0] : '';
+  var wrapperSuffix = (wrapper.length >= 2) ? wrapper[1] : '';
+%>
+<% if (items.length) { %>
+  <%-wrapperPrefix%>
+  <div class="cmptListing jsharmony_cms_component<%=previewSuffix%> <% if(!previewSuffix){ %>responsive<% } %> <%=properties.cssClass%>" style="<%=properties.cssStyle%>">
+    <% items.forEach(function(item, index) { %>
+      <%
+
+        //Item
+        var itemStyle = '';
+        if(properties.minItemHeight) itemStyle += 'min-height:'+properties.minItemHeight+';';
+
+        //Title
+        var showTitle = _.includes(['all','title'], item.contentLayout);
+
+        //Body
+        var showBody = _.includes(['all','body'], item.contentLayout);
+        var contentContainerStyle = '';
+        var bodyStyle = '';
+        if(item.minContentWidth){
+          if(_.includes(['belowTitle','belowTitleLeft','belowTitleRight'], item.imagePosition)) bodyStyle += 'min-width:' + item.minContentWidth;
+          else contentContainerStyle += 'min-width:' + item.minContentWidth;
+        }
+        
+
+        //Image Container
+        var imageContainerClass = '';
+        if((properties.titlePosition=='top') || (properties.bodyPosition=='top')) imageContainerClass += ' cmptListing_imageContainer-contentAbove';
+        if((properties.titlePosition=='bottom') || (properties.bodyPosition=='bottom')) imageContainerClass += ' cmptListing_imageContainer-contentBelow';
+        var imageContainerStyle = '';
+        if(properties.imageWidth) imageContainerStyle += 'width:'+properties.imageWidth+';';
+        if(properties.minImageWidth) imageContainerStyle += 'min-width:'+properties.minImageWidth+';';
+        if(properties.maxImageWidth) imageContainerStyle += 'max-width:'+properties.maxImageWidth+';';
+
+        //Link
+        var linkOnClick = '';
+        var linkUrl = item.link||'';
+        if(previewSuffix){
+          linkOnClick = 'return false;';
+          if(linkUrl) linkUrl = '#';
+        }
+        else if(linkUrl.substr(0,3)=='js:'){
+          linkOnClick = linkUrl.substr(3) + '; return false;';
+          linkUrl = '#';
+        }
+
+      %>
+      <div class="cmptListing_item cmptListing_item-<%=item.imagePosition%> item<%=index%> <%=item.cssClass||''%>" style="<%=itemStyle%>" data-item="<%=index%>">
+        <a <% if(linkUrl){ %>href="<%=linkUrl%>"<% } %> <% if(linkOnClick){ %>onclick="<%=linkOnClick%>"<% } %> class="cmptListing_link <% if(linkUrl){ %>cmptListing_link-linked<% } %>" <%if(item.linkTarget){%>target="<%=item.linkTarget%>"<%}%>>
+
+          <% if(_.includes(['left','right','aboveTitle'], item.imagePosition)){ %>
+            <div class="cmptListing_imageContainer <%-imageContainerClass%>" style="<%-imageContainerStyle%>">
+              <% if(item.image){ %><img class="cmptListing_image" src="<%=item.image%>" /><% } %>
+            </div>
+          <% } %>
+
+          <div class="cmptListing_contentContainer" style="<%-contentContainerStyle%>">
+            <% if(showTitle){ %><h2 class="cmptListing_title" <% if(renderType=='gridItemPreview'){ %>data-component-title-editor="title"<% } %>><%-item.title%></h2><% } %>
+
+            <% if(_.includes(['belowTitle','belowTitleLeft','belowTitleRight'], item.imagePosition)){ %>
+              <div class="cmptListing_imageContainer <%-imageContainerClass%>" style="<%-imageContainerStyle%>">
+                <% if(item.image){ %><img class="cmptListing_image" src="<%=item.image%>" /><% } %>
+              </div>
+            <% } %>
+
+            <% if(showBody){ %><div class="cmptListing_body" style="<%-bodyStyle%>" <% if(renderType=='gridItemPreview'){ %>data-component-full-editor="body"<% } %>><%-item.body%></div><% } %>
+          </div>
+
+          <% if(_.includes(['belowBody'], item.imagePosition)){ %>
+            <div class="cmptListing_imageContainer <%-imageContainerClass%>" style="<%-imageContainerStyle%>">
+              <% if(item.image){ %><img class="cmptListing_image" src="<%=item.image%>" /><% } %>
+            </div>
+          <% } %>
+
+          <div style="clear:both;"></div>
+        </a>
+      </div>
+    <% }) %>
+  </div>
+  <%-wrapperSuffix%>
+<% } else if(isInEditor) { %>
+  <%-wrapperPrefix%>
+  <div class="cmptListing jsharmony_cms_component<%=previewSuffix%> empty <%=properties.cssClass%>" style="<%=properties.cssStyle%>;">
+    <div><h3>Listing</h3></div>
+    <div>
+      <span class="material-icons">view_headline</span>
+    </div>
+  </div>
+  <%-wrapperSuffix%>
+<% } %>

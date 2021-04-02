@@ -1,0 +1,142 @@
+<script type="text/cms-component-config">
+  {
+    "title": "Carousel",
+    "caption": ["Item", "Items"],
+    "multiple_items": true,
+    "icon": "material:view_carousel",
+    "component_properties": {
+      "fields": [
+        { "name": "tilesPerRow", "caption": "Tiles Per Row", "control": "dropdown", "default": "auto",
+          "lov": { "values": { "auto": "Auto", "1": "1", "2": "2", "3": "3", "4": "4", "6": "6", "8": "8" } }},
+  
+        { "name": "minTileHeight", "caption": "Tile Min Height",
+          "control": "textbox", "controlstyle": "width:80px", "controlparams": { "placeholder": "ex: 300px" },
+        },
+  
+        { "name": "maxTileHeight", "caption": "Max Height", "newline": false,
+          "control": "textbox", "controlstyle": "width:80px", "controlparams": { "placeholder": "ex: 300px" },
+        },
+  
+        { "name": "titlePosition", "control": "dropdown", "caption": "Title Position", "default": "bottom",
+          "lov": { "values": { "overlay": "Overlay Image", "top": "Above Image", "bottom": "Below Image", "none": "None" } }},
+  
+        { "name": "bodyPosition", "control": "dropdown", "caption": "Body", "default": "bottom", "captionstyle":"margin-left:7px;", "newline": false,
+          "lov": { "values": { "overlay": "Overlay Image", "top": "Above Image", "bottom": "Below Image", "none": "None" } }},
+  
+  
+        { "name": "cssStyle", "caption": "CSS Style", "control": "textbox", "controlstyle": "width:260px"},
+  
+        { "name": "cssClass", "caption": "CSS Class", "control": "textbox", "controlstyle": "width:260px"},
+  
+        { "name": "wrapper", "caption": "Wrapper",
+          "control": "textarea", "controlstyle": "height:150px;width:260px",
+          "validate": [
+            { "function":"js:if(_obj.wrapper && ((_obj.wrapper||'').toString().indexOf('%%%CONTENT%%%') <= 0)) return 'Wrapper requires %%%CONTENT%%% flag';" },
+            { "function":"js:if(_obj.wrapper && ((_obj.wrapper||'').toString().split('%%%CONTENT%%%').length > 2)) return 'Wrapper can only have one %%%CONTENT%%% flag';" }
+          ]
+        },
+        
+        { "control": "html", "value": "<b>Example:</b> &lt;div&gt;%%%CONTENT%%%&lt;/div&gt;", "newline": true },
+      ]
+    },
+    "item_properties": {
+      "popup": [500,200],
+      "fields": [
+        { "name": "image", "caption": "Image", "control": "media_browser"},
+        { "name": "link", "caption": "Link", "control": "link_browser"},
+  
+        { "name": "linkTarget", "control": "dropdown", "caption": "Link Target",
+            "lov": { "values": { "": "Same Window", "_blank": "New Window" } }},
+  
+        { "name": "contentOverlayShadow", "control": "dropdown", "caption": "Shadow Overlay", "default": "none",
+          "lov": { "values": { "none": "None", "light_full": "Light Shadow", "heavy_full": "Heavy Shadow" } }},
+    
+        { "name": "cssClass", "caption": "CSS Class", "captionstyle":"margin-left:7px;", "newline": false,
+          "control": "textbox", "controlstyle": "width:320px"},
+  
+        { "name": "title", "control": "htmleditor" },
+        { "name": "body", "control": "htmleditor" },
+      ]
+    }
+  }
+</script>
+
+<%
+  var items = (data && data.items || []);
+  var previewSuffix = ((renderType=='gridRowDataPreview') || (renderType=='gridItemPreview')) ? '_preview' : '';
+
+  var tilesPerRow = properties.tilesPerRow;
+  if(tilesPerRow=='auto'){
+    if(items.length <= 1) tilesPerRow = 1;
+    else if(items.length <= 3) tilesPerRow = 2;
+    else if(items.length <= 5) tilesPerRow = 3;
+    else tilesPerRow = 4;
+  }
+
+  var wrapper = (properties.wrapper || '%%%CONTENT%%%').toString().split('%%%CONTENT%%%');
+  var wrapperPrefix = (wrapper.length >= 1) ? wrapper[0] : '';
+  var wrapperSuffix = (wrapper.length >= 2) ? wrapper[1] : '';
+%>
+<% if (items.length) { %>
+  <%-wrapperPrefix%>
+  <div class="cmptCarousel jsharmony_cms_component<%=previewSuffix%> cmptCarousel-x<%=tilesPerRow%> <%=(properties.tilesPerRow=='auto'?'cmptCarousel-xAuto':'')%> <% if(!previewSuffix){ %>responsive<% } %> <%=properties.cssClass%>" style="<%=properties.cssStyle%>" data-tiles_per_row="<%=tilesPerRow%>">
+    <div class="cmptCarousel_container" data-carouselwrapper="1">
+      <% items.forEach(function(item, index) { %>
+        <%
+
+          //Tile
+          var tileStyle = '';
+          if(properties.minTileHeight) tileStyle += 'min-height:'+properties.minTileHeight+';';
+          if(properties.maxTileHeight) tileStyle += 'overflow:hidden; max-height:'+properties.maxTileHeight+';';
+
+          //Shadow
+          var tileContentShadow = '';
+          if(item.contentOverlayShadow=='light_full') tileContentShadow = 'cmptCarousel_tileImageOverlay-shadowLight';
+          else if(item.contentOverlayShadow=='heavy_full') tileContentShadow = 'cmptCarousel_tileImageOverlay-shadowHeavy';
+
+          //Image Container
+          var imageContainerClass = '';
+          if((properties.titlePosition=='top') || (properties.bodyPosition=='top')) imageContainerClass += ' cmptCarousel_tileImageContainer-contentAbove';
+          if((properties.titlePosition=='bottom') || (properties.bodyPosition=='bottom')) imageContainerClass += ' cmptCarousel_tileImageContainer-contentBelow';
+
+          //Link
+          var linkOnClick = '';
+          var linkUrl = item.link||'';
+          if(previewSuffix) linkUrl = '';
+          else if(linkUrl.substr(0,3)=='js:'){
+            linkOnClick = linkUrl.substr(3) + '; return false;';
+            linkUrl = '#';
+          }
+
+        %>
+        <div class="cmptCarousel_tile item<%=index%> <%=item.cssClass||''%>" style="<%=tileStyle%>" data-tile="<%=index%>">
+          <a <% if(linkUrl){ %>href="<%=linkUrl%>"<% } %> <% if(linkOnClick){ %>onclick="<%=linkOnClick%>"<% } %> class="cmptCarousel_tileLink <% if(linkUrl){ %>cmptCarousel_tileLink-linked<% } %>" <%if(item.linkTarget){%>target="<%=item.linkTarget%>"<%}%>>
+            <% if(properties.titlePosition=='top'){ %><h2 class="cmptCarousel_tileTitle cmptCarousel_tileTitle-top" <% if(renderType=='gridItemPreview'){ %>data-component-title-editor="title"<% } %>><%-item.title%></h2><% } %>
+            <% if(properties.bodyPosition=='top'){ %><div class="cmptCarousel_tileBody cmptCarousel_tileTitle-top" <% if(renderType=='gridItemPreview'){ %>data-component-full-editor="body"<% } %>><%-item.body%></div><% } %>
+            <div class="cmptCarousel_tileImageContainer <%-imageContainerClass%>">
+              <% if(item.image){ %><img class="cmptCarousel_tileImage" src="<%=item.image%>" data-carouselimage="1" /><% } %>
+              <div class="cmptCarousel_tileImageOverlay <%=tileContentShadow%>">
+                <% if(properties.titlePosition=='overlay'){ %><h2 class="cmptCarousel_tileTitle cmptCarousel_tileTitle-overlay" <% if(renderType=='gridItemPreview'){ %>data-component-title-editor="title"<% } %>><%-item.title%></h2><% } %>
+                <% if(properties.bodyPosition=='overlay'){ %><div class="cmptCarousel_tileBody cmptCarousel_tileTitle-overlay" <% if(renderType=='gridItemPreview'){ %>data-component-full-editor="body"<% } %>><%-item.body%></div><% } %>
+              </div>
+            </div>
+            <% if(properties.titlePosition=='bottom'){ %><h2 class="cmptCarousel_tileTitle cmptCarousel_tileTitle-bottom" <% if(renderType=='gridItemPreview'){ %>data-component-title-editor="title"<% } %>><%-item.title%></h2><% } %>
+            <% if(properties.bodyPosition=='bottom'){ %><div class="cmptCarousel_tileBody cmptCarousel_tileTitle-bottom" <% if(renderType=='gridItemPreview'){ %>data-component-full-editor="body"<% } %>><%-item.body%></div><% } %>
+          </a>
+        </div>
+      <% }) %>
+    </div>
+    <div data-carouselbutton="prev" class="cmptCarousel_btnPrev"></div>
+    <div data-carouselbutton="next" class="cmptCarousel_btnNext"></div>
+  </div>
+  <%-wrapperSuffix%>
+<% } else if(isInEditor) { %>
+  <%-wrapperPrefix%>
+  <div class="cmptCarousel jsharmony_cms_component<%=previewSuffix%> empty <%=properties.cssClass%>" style="<%=properties.cssStyle%>;">
+    <div><h3>Carousel</h3></div>
+    <div>
+      <span class="material-icons">view_carousel</span>
+    </div>
+  </div>
+  <%-wrapperSuffix%>
+<% } %>

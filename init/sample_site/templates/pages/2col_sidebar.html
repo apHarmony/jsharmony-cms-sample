@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>jsHarmony CMS</title>
+
+<link rel="stylesheet" type="text/css" href="/css/style.css" />
+<link rel="stylesheet" type="text/css" href="/css/style.mobile.css" />
+<link rel="stylesheet" type="text/css" href="/fonts/fonts.css" />
+<script language="javascript" type="text/javascript" src="/js/jquery-1.12.4.js"></script>
+<script language="javascript" type="text/javascript" src="/js/aphWebComponents.js"></script>
+<script language="javascript" type="text/javascript" src="/js/site.js"></script>
+
+<script type="text/cms-page-config">
+  {
+    "title": "Two-Column w/Sidebar",
+    "content_elements": {
+      "col1": { "type": "htmleditor", "title": "Column 1" },
+      "col2": { "type": "htmleditor", "title": "Column 2" }
+    },
+    "properties": {
+      "fields": [
+        { "name": "showTitle", "caption": "Show Title", "default": "Y", "control": "checkbox", "controlparams": { "value_true": "Y", "value_false": "N" } },
+        { "name": "bodyClass", "caption": "Body CSS Class", "control": "textbox", "controlstyle": "width:400px" },
+        { "name": "bodyStyle", "caption": "Body CSS Style", "control": "textbox", "controlstyle": "width:400px" }
+      ]
+    }
+  }
+</script>
+
+</head>
+
+<body cms-onRender="addClass(page.properties.bodyClass); addStyle(page.properties.bodyStyle);">
+  <div id="body_wrapper"><div id="body_inner">
+
+  	<div id="xhead">
+      <div id="xmenu_solidbg"></div>
+      <div id="xmenu">
+        <div id="xlogo">
+     	    <a href="/"><img src="/images/logo.header.png" alt="Company" /></a>
+        </div>
+        <div class="xtoplinks"></div>
+        <a id="xmore" href="#" onclick="xmore_click(); return false;"></a>
+        <div id="xlogo2"><a href="/"><img src="/images/logo.header.png" alt="Company" /></a></div>
+        <div id="xnav" cms-component="menus/main.top" cms-menu-tag="main"></div>
+        <div class="clear" id="afterxnav"></div>
+      </div>
+      <div id="is_mobile"></div>
+
+      <div class="xhead_body">
+        <div cms-component="breadcrumbs"></div>
+        <h1 cms-title class="bg" cms-onRender="showIf(page.properties.showTitle!='N');"></h1>
+      </div>
+    </div><!-- xhead -->
+
+    <div id="xcontentwrap">
+      <div class="xcontentcolumns">
+        <div class="xsidenav_container" cms-component="sidebar"></div>
+        <div id="xcontent">
+          <!-- Content -->
+
+          <div class="xcontentpanel xcontentpanel_2col" cms-content-editor="page.content.col1">Page Content</div>
+          <div class="xcontentpanel xcontentpanel_2col" cms-content-editor="page.content.col2">Page Content</div>
+          
+          <!-- End of Content -->
+          <div style="clear:both;"></div>
+        </div>
+        <div style="clear:both;"></div>
+      </div>
+    </div><!-- xcontent_wrap -->
+  
+    <div id="xloadingblock"><div><div id="xloadingbox">Loading<br/><img src="/images/loading.gif" alt="Loading" title="Loading" /></div></div></div>
+
+    <div id="xfooter"><div id="xfooter_content">
+      <div class="xfooter_info">
+        <a class="xfooter_logo" href="/"><img src="/images/logo.footer.png" alt="Company" /></a>
+        <div id="xfooter_social">
+          <div id="home_social">
+            <div class="clear" style="float:none;"></div>
+          </div>
+        </div>
+        <div id="xfooter_contact">
+          Phone: 630-234-2345<br/>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=123+Main+St%0D%0ABartlett%2C+IL+60103">123 Main St<BR/>
+          Bartlett, IL 60103</a><br/>
+          9am - 6pm Mon - Fri<br/>
+        </div>
+      </div>
+      <div class="xsitemap_container">
+        <div class="xsitemap d1" cms-component="menus/footer" cms-menu-tag="footer"></div>
+      </div>
+      <div class="clear"></div>
+      <div class="xfooter_bottom">
+        <div id="xfooter_copy">
+          <span class="nobreak">Copyright &nbsp;&copy;&nbsp; <script language="javascript" type="text/javascript">document.write(new Date().getFullYear());</script></span> &nbsp; <span class="nobreak">All rights reserved.</span><br/>
+          <a href="https://www.jsharmony.com">Website Content Management</a> by <a href="https://www.jsharmony.com">jsHarmony CMS</a>
+        </div>
+      </div>
+      <div class="clear"></div>
+    </div></div><!-- xfooter -->
+  </div></div><!-- body_wrapper,body_inner -->
+  <div id="side_menu_wrapper" cms-component="menus/main.sidebar" cms-menu-tag="main"></div><!-- side_menu_wrapper -->
+  <div id="content_block"></div>
+  <div id="jsharmony_cms_footer"></div>
+</body>
+</html>

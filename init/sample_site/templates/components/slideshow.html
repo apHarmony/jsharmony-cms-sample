@@ -1,0 +1,138 @@
+<script type="text/cms-component-config">
+  {
+    "title": "Slideshow",
+    "caption": ["Slide", "Slides"],
+    "multiple_items": true,
+    "icon": "material:photo_library",
+    "properties": {
+      "fields": [
+        { "name": "display", "control": "dropdown", "caption": "Display", "default": "fixed",
+          "lov": { "values": { "fixed": "Fixed Height", "scale": "Scale" } }},
+  
+        { "name": "animation", "control": "dropdown", "caption": "Animation",
+          "lov": { "values": { "": "None", "ZOOM": "Zoom" } }},
+  
+        { "name": "maxHeight", "caption": "Max Height (px)", "type": "int", "default": 400,
+          "control": "textbox", "controlstyle": "width:80px",
+          "validate": [
+            "IsNumeric",
+            { "function":"js:var display = (_obj.display||'fixed');  if(display=='fixed' && !_obj.maxHeight) return 'Max Height is required for Fixed Display';" }
+          ]
+        },
+  
+        { "name": "cssStyle", "caption": "CSS Style", "control": "textbox", "controlstyle": "width:260px"},
+  
+        { "name": "cssClass", "caption": "CSS Class", "control": "textbox", "controlstyle": "width:260px" },
+  
+        { "name": "wrapper", "caption": "Wrapper",
+          "control": "textarea", "controlstyle": "height:150px;width:260px",
+          "validate": [
+            { "function":"js:if(_obj.wrapper && ((_obj.wrapper||'').toString().indexOf('%%%CONTENT%%%') <= 0)) return 'Wrapper requires %%%CONTENT%%% flag';" },
+            { "function":"js:if(_obj.wrapper && ((_obj.wrapper||'').toString().split('%%%CONTENT%%%').length > 2)) return 'Wrapper can only have one %%%CONTENT%%% flag';" }
+          ]
+        },
+        
+        { "control": "html", "value": "<b>Example:</b> &lt;div&gt;%%%CONTENT%%%&lt;/div&gt;", "newline": true },
+      ]
+    },
+    "data": {
+      "popup": [1000,200],
+      "fields": [
+  
+        { "name": "image", "control": "media_browser", "caption": "Image", "controlstyle": "width:320px"},
+  
+        { "name": "link", "control": "link_browser", "caption": "Link", "controlstyle": "width:320px"},
+  
+        { "name": "linkTarget", "control": "dropdown", "caption": "Link Target",
+            "lov": { "values": { "": "Same Window", "_blank": "New Window" } }},
+  
+        { "name": "contentLayout", "control": "dropdown", "caption": "Content", "default": "all",
+          "lov": { "values": { "all": "Title + Body", "title": "Title Only", "body": "Body Only", "none": "None" } }},
+  
+        { "name": "contentPosition", "control": "dropdown", "caption": "Position", "default": "full", "captionstyle":"margin-left:7px;", "newline": false,
+          "lov": { "values": { "full": "Full Width", "left": "Left", "right": "Right" } }},
+  
+        { "name": "contentOverlayShadow", "control": "dropdown", "caption": "Shadow Overlay", "default": "none", "captionstyle":"margin-left:7px;", "newline": false,
+          "lov": { "values": { "none": "None", "light_content": "Light Shadow Behind Content", "light_full": "Light Shadow Over Full Image", "heavy_content": "Heavy Shadow Behind Content", "heavy_full": "Heavy Shadow Over Full Image" } }},
+  
+        { "name": "cssClass", "caption": "CSS Class", "captionstyle":"margin-left:7px;", "newline": false, "control": "textbox", "controlstyle": "width:320px" },
+  
+        { "name": "body", "control": "hidden" },
+  
+        { "name": "title", "control": "hidden" }
+      ]
+    }
+  }
+</script>
+
+<%
+  var items = (data && data.items || []).filter(function(item){ return !!item.image; });
+  var previewSuffix = ((renderType=='gridRowDataPreview') || (renderType=='gridItemPreview')) ? '_preview' : '';
+
+  var wrapper = (properties.wrapper || '%%%CONTENT%%%').toString().split('%%%CONTENT%%%');
+  var wrapperPrefix = (wrapper.length >= 1) ? wrapper[0] : '';
+  var wrapperSuffix = (wrapper.length >= 2) ? wrapper[1] : '';
+%>
+<% if (items.length) { %>
+  <%-wrapperPrefix%>
+  <div class="cmptSlideshow jsharmony_cms_component<%=previewSuffix%> cmptSlideshow-<%=properties.display%> <% if(!previewSuffix){ %>responsive fullWidth<% } %> <%=properties.cssClass%>" style="<%=properties.cssStyle%>" data-animation="<%=properties.animation%>">
+    <% items.forEach(function(item, index) { %>
+      <%
+        var showTitle = _.includes(['all','title'], item.contentLayout);
+        var showBody = _.includes(['all','body'], item.contentLayout);
+
+        //Shadow
+        var slideShadow = '';
+        var slideContentShadow = '';
+        if(item.contentOverlayShadow=='light_content') slideContentShadow = 'cmptSlideshow_slideContent-shadowLight';
+        else if(item.contentOverlayShadow=='light_full') slideShadow = 'cmptSlideshow_slide-shadowLight';
+        else if(item.contentOverlayShadow=='heavy_content') slideContentShadow = 'cmptSlideshow_slideContent-shadowHeavy';
+        else if(item.contentOverlayShadow=='heavy_full') slideShadow = 'cmptSlideshow_slide-shadowHeavy';
+  
+        //Link
+        var linkStyle = "background-image: url('"+ encodeURI(item.image) +"');";
+        var linkOnClick = '';
+        var linkUrl = item.link||'';
+        if(previewSuffix) linkUrl = '';
+        else if(linkUrl.substr(0,3)=='js:'){
+          linkOnClick = linkUrl.substr(3) + '; return false;';
+          linkUrl = '#';
+        }
+
+        //Image
+        var imageStyle = '';
+        if(properties.display == 'scale'){
+          //Relative Scaling
+          if(properties.maxHeight){
+            imageStyle += 'max-height:'+properties.maxHeight+'px;width:auto;';
+          }
+        }
+        else {
+          //Fixed Height
+          var imageHeight = properties.maxHeight || 400;
+          imageStyle = 'height:'+imageHeight+'px;';
+          imageStyle += 'width:100%;';
+        }
+      %>
+      <div class="cmptSlideshow_slide item<%=index%> <%=item.cssClass||''%> <%=slideShadow%>" data-slide="<%=index%>">
+        <a <% if(linkUrl){ %>href="<%=linkUrl%>"<% } %> <% if(linkOnClick){ %>onclick="<%=linkOnClick%>"<% } %> class="cmptSlideshow_slideLink" style="<%-linkStyle%>" <%if(item.linkTarget){%>target="<%=item.linkTarget%>"<%}%> data-slide-background="1"><img data-slide-image="1" class="cmptSlideshow_slideImage" src="<%=item.image%>" style="<%=imageStyle%>" /></a>
+          <div class="cmptSlideshow_slideContent <%=item.contentPosition%> <%=slideContentShadow%>" <% if(linkUrl){ %>style="pointer-events:none;"<% } %>>
+              <% if(showTitle){ %><h2 class="cmptSlideshow_slideTitle <%=item.contentPosition%>" <% if(renderType=='gridItemPreview'){ %>data-component-title-editor="title"<% } %>><%-item.title%></h2><% } %>
+              <% if(showBody){ %><div class="cmptSlideshow_slideBody <%=item.contentPosition%>" <% if(renderType=='gridItemPreview'){ %>data-component-full-editor="body"<% } %>><%-item.body%></div><% } %>
+          </div>
+      </div>
+    <% }) %>
+    <div data-slidebutton="prev" class="cmptSlideshow_btnPrev"></div>
+    <div data-slidebutton="next" class="cmptSlideshow_btnNext"></div>
+  </div>
+  <%-wrapperSuffix%>
+<% } else if(isInEditor) { %>
+  <%-wrapperPrefix%>
+  <div class="cmptSlideshow jsharmony_cms_component<%=previewSuffix%> empty <%=properties.cssClass%>" style="<%=properties.cssStyle%>;">
+    <div><h3>Slideshow</h3></div>
+    <div>
+      <span class="material-icons">photo_library</span>
+    </div>
+  </div>
+  <%-wrapperSuffix%>
+<% } %>

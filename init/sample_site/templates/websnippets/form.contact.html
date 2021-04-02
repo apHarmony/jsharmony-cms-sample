@@ -1,0 +1,35 @@
+<script type="text/cms-websnippet-config">
+  {
+    "title": "Form: Contact Us",
+    "description": "Contact Us Form",
+  }
+</script>
+
+<div class="formContact">
+  <form action="mailto:user@company.com" target="_blank" method="post" enctype="text/plain">
+    <table>
+      <tr>
+        <td><label>Name:</label></td>
+        <td><input type="text" name="Name" required="required" /></td>
+      </tr>
+      <tr>
+        <td><label>Email:</label></td>
+        <td><input type="email" name="Email" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Email Address" /></td>
+      </tr>
+      <tr>
+        <td><label>Phone:</label></td>
+        <td><input type="tel" name="Phone" required="required" pattern="[1\-( ]*\d{3}[\-) ]*\d{3}[ \-]*\d{4}.*" title="Phone Number: ###-###-####" placeholder="###-###-####" /></td>
+      </tr>
+      <tr>
+        <td colspan="2" class="vert">
+          <label>How can we help you?</label>
+          <textarea name="Message" required="required"></textarea>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td align="left"><input type="submit" value="Send" /></td>
+      </tr>
+    </table>
+  </form>
+</div>

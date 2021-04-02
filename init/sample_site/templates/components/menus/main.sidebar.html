@@ -1,0 +1,21 @@
+<script type="text/cms-component-config">
+  {
+    "title": "Main Top",
+    "target": "page",
+  }
+</script>
+
+<% secondary_panels = _.filter(menu.allItems, (item) => { return item.children.length > 0; }); %>
+<div jsh-template="menu-items" jsh-foreach-item class="side_menu_item">
+  <a data-id="<%=item.id%>" class="<%~item.class%>" style="<%~item.style%>" href="<%~item.href%>" onclick="<%~item.onclick%>" target="<%~item.target%>"><%-item.html%></a>
+</div>
+
+<div class="side_menu_pane side_menu_pane_primary" id="side_menu_root" data-id="root" style="z-index:0">
+  <div class="side_menu_item"><a class="side_menu_logo" href="/"><img src="/images/logo.png" alt="Company" /></a></div>
+  <%-renderTemplate('menu-items', menu.tree)%>
+</div>
+
+<div jsh-foreach-item="secondary_panels" class="side_menu_pane side_menu_pane_secondary" id="side_menu_<%=item.menu_item_id%>" data-id="<%=item.menu_item_id%>" style="z-index:<%=item.depth%>">
+  <div class="side_menu_item"><a href="#" onclick="side_menu_back(this); return false;">Back</a></div>
+  <%-renderTemplate('menu-items', item.children)%>
+</div>

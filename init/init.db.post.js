@@ -4,6 +4,7 @@ var HelperFS = require('jsharmony/HelperFS');
 var async = require('async');
 var path = require('path');
 var _ = require('lodash');
+var fs = require('fs');
 
 var cliParams = CLI.readParameters({ name: 'init.db.post.js', parameters: {
   'db-user': {'type': 'flag', 'args': ['Database Admin User']},
@@ -65,6 +66,20 @@ jsh.Init(function(){
       db.RunScripts(jsh, ['application','sample_data_post_processing'], { dbconfig: dbconfig, context: 'S1' }, function(err, rslt){
         if(err){ return cb(new Error('Error initializing database')); }
         return cb();
+      });
+    },
+    function(cb){
+      fs.exists(path.join(jsh.Config.datadir,'site','1'), function(exists){
+        if(exists) return cb();
+        console.log('Copying Sample Site Files');
+        async.waterfall([
+          function(sample_cb){
+            HelperFS.createFolderIfNotExists(path.join(jsh.Config.datadir,'site','1'), sample_cb);
+          },
+          function(sample_cb){
+            HelperFS.copyRecursive(path.join(__dirname,'sample_site'),path.join(jsh.Config.datadir,'site','1'), {}, sample_cb);
+          },
+        ], cb);
       });
     },
     function(cb){

@@ -1,0 +1,14 @@
+<script type="text/cms-component-config">
+  {
+    "title": "Footer Menu",
+    "target": "page",
+  }
+</script>
+
+<ul jsh-template="menu">
+  <li jsh-foreach-item class="<%~item.class%>" style="<%~item.style%>">
+    <a href="<%~item.href%>" onclick="<%~item.onclick%>" target="<%~item.target%>"><%-item.html%></a>
+    <%-renderTemplate('menu', item.children)%>
+  </li>
+</ul>
+<%-renderTemplate('menu', menu.tree)%>

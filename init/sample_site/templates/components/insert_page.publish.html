@@ -1,0 +1,14 @@
+<%
+  var item = (data && data.item || {});
+
+  var wrapper = (properties.wrapper || '%%%CONTENT%%%').toString().split('%%%CONTENT%%%');
+  var wrapperPrefix = (wrapper.length >= 1) ? wrapper[0] : '';
+  var wrapperSuffix = (wrapper.length >= 2) ? wrapper[1] : '';
+
+  //Get Page URL
+%>
+<% if (item.page) { %>
+  <%-wrapperPrefix%>
+  <%-include(item.page)%>
+  <%-wrapperSuffix%>
+<% } %>

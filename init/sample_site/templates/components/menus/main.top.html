@@ -1,0 +1,11 @@
+<script type="text/cms-component-config">
+  {
+    "title": "Main Top",
+    "target": "page",
+  }
+</script>
+
+<div jsh-foreach-item="menu.topItems" jsh-foreach-item-separator=" " class="nav_button_container <%-item.class%>" style="<%~item.style%>">
+  <a href="<%~item.href%>" onclick="<%~item.onclick%>" target="<%~item.target%>"><%-item.html%></a>
+</div>
+<span id="xnav_stretch"></span>
