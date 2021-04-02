@@ -21,9 +21,9 @@
   "author": "apHarmony <contact@apharmony.com> (http://www.apharmony.com/)",
   "license": "LGPL-3.0",
   "bugs": {
-    "url": "https://github.com/apHarmony/jsharmony-cli/issues"
+    "url": "https://github.com/apHarmony/jsharmony-cms-sample/issues"
   },
-  "homepage": "https://github.com/apHarmony/jsharmony-cli",
+  "homepage": "https://github.com/apHarmony/jsharmony-cms-sample",
   "dependencies": {
     "async": "^2.6.2",
     "jsharmony": "1.1.243",
