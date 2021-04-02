@@ -1,0 +1,69 @@
+<script type="text/cms-component-config">
+  {
+    "title": "Google Map",
+    "caption": ["Google Map", "Google Maps"],
+    "icon": "material:map",
+    "component_properties": {
+      "fields": [
+        { "name": "addressLine1", "caption": "Address Line 1",
+          "control": "textbox", "controlstyle": "width:260px"},
+  
+        { "name": "addressLine2", "caption": "Address Line 2",
+          "control": "textbox", "controlstyle": "width:260px"},
+  
+        { "name": "addressLine3", "caption": "Address Line 3",
+          "control": "textbox", "controlstyle": "width:260px"},
+  
+        { "control": "html", "value": "<div style='width:260px;display:inline-block;margin-bottom:8px;'><b>Example:</b> Enter the company name in Line 1, Address in Line 2, and City State Zip in Line 3</div>", "newline": true },
+  
+        { "name": "height", "caption": "Height (px)", "type": "int", "default": 400,
+          "control": "textbox", "controlstyle": "width:80px", "validate": [ "IsNumeric", "Required" ] },
+  
+        { "name": "cssStyle", "caption": "CSS Style",
+          "control": "textbox", "controlstyle": "width:260px"},
+  
+        { "name": "cssClass", "caption": "CSS Class",
+          "control": "textbox", "controlstyle": "width:260px"},
+  
+        { "name": "wrapper", "caption": "Wrapper",
+          "control": "textarea", "controlstyle": "height:150px;width:260px",
+          "validate": [
+            { "function":"js:if(_obj.wrapper && ((_obj.wrapper||'').toString().indexOf('%%%CONTENT%%%') <= 0)) return 'Wrapper requires %%%CONTENT%%% flag';" },
+            { "function":"js:if(_obj.wrapper && ((_obj.wrapper||'').toString().split('%%%CONTENT%%%').length > 2)) return 'Wrapper can only have one %%%CONTENT%%% flag';" }
+          ]
+        },
+        
+        { "control": "html", "value": "<b>Example:</b> &lt;div&gt;%%%CONTENT%%%&lt;/div&gt;", "newline": true },
+      ]
+    }
+  }
+</script>
+
+<%
+  var previewSuffix = ((renderType=='gridRowDataPreview') || (renderType=='gridItemPreview')) ? '_preview' : '';
+
+  var wrapper = (properties.wrapper || '%%%CONTENT%%%').toString().split('%%%CONTENT%%%');
+  var wrapperPrefix = (wrapper.length >= 1) ? wrapper[0] : '';
+  var wrapperSuffix = (wrapper.length >= 2) ? wrapper[1] : '';
+
+  var mapHeight = properties.height || 400;
+  var mapAddresses = [properties.addressLine1, properties.addressLine2, properties.addressLine3].filter(function(item){ return (item||'').toString().trim(); });
+  var mapLocation = mapAddresses.join(', ');
+  var mapUrl = 'https://maps.google.com/maps?width=100%25&amp;height='+encodeURIComponent(mapHeight)+'&amp;hl=en&amp;q='+encodeURIComponent(mapLocation)+'&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed';
+%>
+<% if(mapLocation) { %>
+  <%-wrapperPrefix%>
+  <div class="cmptGoogleMap jsharmony_cms_component<%=previewSuffix%> <% if(!previewSuffix){ %>responsive fullWidth<% } %> <%=properties.cssClass%>" style="<%=properties.cssStyle%>">
+    <iframe <% if(isInEditor){ %>name="<%=data.component_id%>_iframe" data-<% } %>src="<%-mapUrl%>" width="100%" height="<%=mapHeight%>" frameborder="0" style="border:0;<% if(isInEditor){ %>pointer-events: none;<% } %>" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+  </div>
+  <%-wrapperSuffix%>
+<% } else if(isInEditor) { %>
+  <%-wrapperPrefix%>
+  <div class="cmptGoogleMap jsharmony_cms_component<%=previewSuffix%> empty <%=properties.cssClass%>" style="<%=properties.cssStyle%>;">
+    <div><h3>Map</h3></div>
+    <div>
+      <span class="material-icons">map</span>
+    </div>
+  </div>
+  <%-wrapperSuffix%>
+<% } %>

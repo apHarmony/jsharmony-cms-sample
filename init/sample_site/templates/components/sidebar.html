@@ -1,0 +1,28 @@
+<script type="text/cms-component-config">
+  {
+    "title": "Sidebar",
+    "target": "page",
+  }
+</script>
+
+<div class="xsidenav">
+  <div jsh-for-item="sitemap.root" class="xsidenav_head" style="<%~item.style%>">
+    <a class="xsidenav_more" href="#" onclick="xsidenav_more_click(this); return false;">
+      <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M4 14h4v-4H4v4zm0 5h4v-4H4v4zM4 9h4V5H4v4zm5 5h12v-4H9v4zm0 5h12v-4H9v4zM9 5v4h12V5H9z"/></svg>
+    </a>
+    <div class="xsidenav_item">
+      <a href="<%~item.href%>" onclick="<%~item.onclick%>" target="<%~item.target%>"><%-item.html%></a>
+    </div>
+  </div>
+  <div class="xsidenav_tree">
+    <ul jsh-template="sitemap-items">
+      <li jsh-foreach-item class="<%~item.class%>" style="<%~item.style%>">
+        <div class="xsidenav_item <%=iif(item.selected,'selected')%>">
+          <a href="<%~item.href%>" onclick="<%~item.onclick%>" target="<%~item.target%>"><%-item.html%></a>
+          <%-renderTemplate('sitemap-items', item.children)%>
+        </div>
+      </li>
+    </ul>
+    <%-renderTemplate('sitemap-items', ((!sitemap.parents && (sitemap.tree.length > 1)) ? sitemap.tree : sitemap.root.children))%>
+  </div>
+</div>
