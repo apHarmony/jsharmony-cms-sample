@@ -54,7 +54,7 @@
 <% if(mapLocation) { %>
   <%-wrapperPrefix%>
   <div class="cmptGoogleMap jsharmony_cms_component<%=previewSuffix%> <% if(!previewSuffix){ %>responsive fullWidth<% } %> <%=properties.cssClass%>" style="<%=properties.cssStyle%>">
-    <iframe <% if(isInEditor){ %>name="<%=data.component_id%>_iframe" data-<% } %>src="<%-mapUrl%>" width="100%" height="<%=mapHeight%>" frameborder="0" style="border:0;<% if(isInEditor){ %>pointer-events: none;<% } %>" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+    <iframe <% if(isInEditor){ %>name="<%=component_id%>_iframe" data-<% } %>src="<%-mapUrl%>" width="100%" height="<%=mapHeight%>" frameborder="0" style="border:0;<% if(isInEditor){ %>pointer-events: none;<% } %>" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
   </div>
   <%-wrapperSuffix%>
 <% } else if(isInEditor) { %>
