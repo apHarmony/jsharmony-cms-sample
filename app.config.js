@@ -17,13 +17,11 @@ exports = module.exports = function(jsh, config, dbconfig){
   
   jsh.Extensions.image = require('jsharmony-image-sharp');
 
-  //Server Settings
-  config.server.http_port = 8080;
+  //Default Server Settings (Can be changed in app.config.local.js)
+  config.server.http_port = 8080;  //Default HTTP Port
   config.server.http_ip = '0.0.0.0';
-  config.server.https_port = 8081;
+  config.server.https_port = 8081;  //Default HTTPS Port
   config.server.https_ip = '0.0.0.0';
-  config.server.https_key = path.dirname(module.filename) + '/cert/localhost.key';
-  config.server.https_cert = path.dirname(module.filename) + '/cert/localhost.crt';
   config.server.request_timeout = 60*60*1000;
   
   //jsHarmony Factory Configuration
