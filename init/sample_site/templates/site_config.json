@@ -1,0 +1,9 @@
+{
+  "menus": [
+    { "name": "Main Menu", "tag": "main", "max_depth": 2 },
+    { "name": "Footer Menu", "tag": "footer" }
+  ],
+  "defaultEditorConfig": {
+    "materialIcons": true
+  }
+}

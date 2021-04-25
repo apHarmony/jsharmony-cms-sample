@@ -33,7 +33,6 @@ exports = module.exports = function(jsh, config, dbconfig){
   if(configCMS){
     configCMS.preview_server.enabled = true;
     configCMS.git.enabled = true;
-    configCMS.defaultEditorConfig.materialIcons = true;
   }
 
   /**************
