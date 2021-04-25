@@ -34,7 +34,6 @@ exports = module.exports = function(jsh, config, dbconfig){
     configCMS.preview_server.enabled = true;
     configCMS.preview_server.serverPort = 8082;
     configCMS.git.enabled = true;
-    configCMS.defaultEditorConfig.materialIcons = true;
   }
 
   /**************
