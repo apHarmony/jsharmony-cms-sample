@@ -6,6 +6,5 @@
 </script>
 
 <div jsh-for-item="sitemap.currentItem" class="bcrumbs">
-  <% var breadcrumbs = _.filter(sitemap.parents.concat(sitemap.currentItem), function(item){ return !item.sitemap_item_exclude_from_breadcrumbs }); %>
-  <a jsh-foreach-item="breadcrumbs" jsh-foreach-item-separator=" / " href="<%~(!item.selected && item.href)%>" onclick="<%~item.onclick%>" target="<%~item.target%>"><span class="<%~iif(item.selected,'bcrumbs_curr')%>"><%-item.html%></span></a>
+  <a jsh-foreach-item="sitemap.breadcrumbs" jsh-foreach-item-separator=" / " href="<%~(!item.selected && item.href)%>" onclick="<%~item.onclick%>" target="<%~item.target%>"><span class="<%~iif(item.selected,'bcrumbs_curr')%>"><%-item.html%></span></a>
 </div>
