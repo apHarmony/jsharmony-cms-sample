@@ -1,6 +1,10 @@
 # jsharmony-cms-sample
 jsHarmony CMS Sample Project
 
+## Prerequisites
+
+* Node.js
+
 ## Installation
 
 1. Install the jsHarmony CLI, if not already installed
@@ -20,6 +24,8 @@ jsHarmony CMS Sample Project
    ````
    This will download the project from GitHub and install in the current folder
    The installer will generate the admin username and password
+
+   If jsharmony doesn't run, ensure the Node.js npm folder is in your system PATH variable.
    
 4. Start the server by running:
    ````

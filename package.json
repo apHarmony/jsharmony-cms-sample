@@ -1,6 +1,6 @@
 {
   "name": "jsharmony-cms-sample",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "jsHarmony CMS Sample Project",
   "main": "app.js",
   "scripts": {
