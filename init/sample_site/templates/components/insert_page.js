@@ -11,7 +11,9 @@ component.insertPage = function(jcontainer, pageUrl){
   XExt.execif(!(pageUrl in cms.App.externalPageCache),
     function(f){ //Load Page Content from Server
       var errorTemplate = '<div style="background-color:red;color:white;font-weight:bold;padding:20px;text-align:center;">*** ERROR LOADING INSERTED PAGE *** %%%ERRMSG%%%</div>';;
-      jsh.XForm.RequestSync(pageUrl,{},
+      var qs = {};
+      if(cms.token) qs.jshcms_token = cms.token;
+      jsh.XForm.RequestSync(pageUrl,qs,
         function(rslt){ //onComplete
           if(rslt && rslt.page && rslt.page.content){
             cms.App.externalPageCache[pageUrl] = (rslt.page.content.body || '');
