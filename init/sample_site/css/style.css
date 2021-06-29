@@ -292,6 +292,12 @@ HEADER
 	width: 100%;
 }
 #xnav .nav_button_container { position:relative; }
+:target:before {
+  content:"";
+  display:block;
+  height:46px;
+  margin:-46px 0 0 0;
+}
 
 /*********************/
 /* FULL-WIDTH HEADER */
@@ -641,12 +647,12 @@ COMPONENTS
 }
 .cmptCarousel_btnPrev {
   left:2px;
-  background-image:url('/images/arrow_left.svg');
+  background-image:url('../images/arrow_left.svg');
   background-position:50% 50%;
 }
 .cmptCarousel_btnNext {
   right:2px;
-  background-image:url('/images/arrow_right.svg');
+  background-image:url('../images/arrow_right.svg');
 }
 .cmptCarousel_container {
   white-space:nowrap;
@@ -1129,7 +1135,7 @@ a.cmptListing_link {
 .cmptSlideshow_btnPrev,.cmptSlideshow_btnNext {
   z-index:4;
   position:absolute;
-  background-image:url('/images/slide_arrows.png');
+  background-image:url('../images/slide_arrows.png');
   display:none;
   opacity:0.75;
   width:30px;
@@ -1417,7 +1423,7 @@ SIDE MENU
 #is_mobile { display:block; height:1px; width:1px; position:fixed;top:0px;left:0px; }
 a#xmore {
 	display:block;
-	background-image:url('/images/icon_more.png');
+	background-image:url('../images/icon_more.png');
 	background-position: center center;
 	background-repeat:no-repeat;
 	width:58px;
