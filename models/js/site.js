@@ -6,7 +6,7 @@
     var demoMessage = $('<div class="demo_message">* Demo Site is Read-Only *</div>');
     demoMessage.css({
       backgroundColor: '#00ff00',
-      position: 'fixed',
+      position: 'absolute',
       top: '25px',
       right: '3px',
       zIndex: 9,
