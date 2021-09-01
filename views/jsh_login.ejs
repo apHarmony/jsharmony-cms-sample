@@ -3,19 +3,26 @@ req._override_title = '';
 %>
 <div><!-- ***JSHARMONY_LOGIN_DEMO*** -->
   <h1 style="padding-bottom:20px;">Welcome to the jsHarmony CMS Demo</h1>
-  The jsHarmony CMS is a static content DXP, with support for multiple editing and deployment environments.<br/><br/>
-  The CMS is highly extensible through the jsHarmony framework.<br/><br/>
-  Administrative features are disabled on the demo site.<br/>
-  <br/>
-  The published site can be accessed at <a href="https://cms.jsharmony.com:3303">https://cms.jsharmony.com:3303</a><br/>
-  <br/>
+  The jsHarmony CMS is an open source static content CMS, with flexible in-page editing and support for integration into existing web applications.<br/><br/>
+  Visit the <a href="https://www.jsharmonycms.com/">jsharmonycms.com</a> website for documentation and the Getting Started video tutorials.
+  <hr style="margin:20px 0;" />
+  <div style="padding:8px 0 18px 0;">
+    <div style="display:inline-block;background-color:#ffff00;border:1px solid #ccc;padding:2px 12px;">This demo site is READ-ONLY.</div>
+    &nbsp; Create your own local, editable instance by installing the <a href="https://github.com/apHarmony/jsharmony-cms-sample" target="_blank">jsharmony-cms-sample</a>
+  </div>
+  <div>On publish, the demo site deploys to <a href="https://demo.jsharmonycms.com:3303">https://demo.jsharmonycms.com:3303</a></div>
   
   <!-- MAIN SYSTEM DEMO ACCOUNT -->
-  <% if(!ejsparams.username) ejsparams.username = 'demo@jsharmony.com'; %>
+  <% if(!ejsparams.username) ejsparams.username = 'demo@jsharmonycms.com'; %>
   <h4 style="margin-bottom:5px;">CMS Demo User:</h4>
-  <b>User:</b> demo@jsharmony.com<br/>
+  <b>User:</b> demo@jsharmonycms.com<br/>
   <b>Password:</b> Content@Work<br/>
   &nbsp;<br/>
   <h1 style="display:inline-block;padding-top:20px;" class="xform_title">CMS Login</h1>
 </div>
 <%-jsh.RenderView('jsharmony/jsh_login',ejsparams)%>
+<script type="text/javascript">
+<% if(ejsparams.username=='demo@jsharmonycms.com'){ %>
+document.querySelectorAll('.password')[0].value = 'Content@Work';
+<% } %>
+</script>

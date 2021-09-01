@@ -9,6 +9,8 @@ var ejs = require('jsharmony/lib/ejs');
 
 exports = module.exports = function(jsh, config, dbconfig){
 
+  jsh.setLocale('demo');
+
   config.app_name = 'jsHarmony CMS'; //REQUIRED
 
   config.app_settings = _.extend(config.app_settings, {
@@ -41,6 +43,29 @@ exports = module.exports = function(jsh, config, dbconfig){
   **************/
   config.onServerReady.push(function (cb, servers){
     async.waterfall([
+      //Make site read-only
+      function(load_cb){
+        for(var modelid in jsh.Models){
+          var model = jsh.Models[modelid];
+          if(_.includes([
+            'jsHarmonyCMS/Dashboard_BranchOverview_Data','jsHarmonyCMS/Dashboard_NewContentPieChart_Data','jsHarmonyCMS/Dashboard_UserPieChart_Data',
+            'jsHarmonyCMS/Media_Tree_File_Listing','jsHarmonyCMS/Page_Info',
+          ], modelid)) continue;
+          model.actions = (model.actions||'').replace(/[^B*]/g,'').replace(/[*]/g,'B');
+          if(model.roles){
+            for(var site in model.roles){
+              var siteRoles = model.roles[site];
+              for(var roleName in siteRoles){
+                siteRoles[roleName] = (siteRoles[roleName]||'').replace(/[^B*]/g,'').replace(/[*]/g,'B');
+              }
+            }
+          }
+          if(_.includes([
+            'jsHarmonyCMS/Site_Deployment_Target_Key_Upload','jsHarmonyCMS/Branch_Upload',
+          ], modelid)) model.actions = '';
+        }
+        return load_cb();
+      },
 
       //Sample Test Site - Serves the published static files on port 8083
       function(load_cb){

@@ -1,0 +1,6 @@
+{
+  "*": {
+    "Invalid Model Access": "Save / update is not enabled in CMS demo.",
+    "Invalid Model Access for @fullmodelid": "Save / update is not enabled in CMS demo."
+  }
+}
