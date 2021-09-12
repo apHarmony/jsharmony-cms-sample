@@ -20,9 +20,9 @@ jsHarmony CMS Sample Project
    
 3. Install jsharmony-cms-sample:
    ````
-   jsharmony create project https://github.com/apHarmony/jsharmony-cms-sample/archive/master.zip
+   jsharmony create project cms-sample
    ````
-   This will download the project from GitHub and install in the current folder
+   This will download the project source and install in the current folder
    The installer will generate the admin username and password
 
    If `jsharmony` doesn't run, ensure the Node.js npm folder is in your system PATH variable.
