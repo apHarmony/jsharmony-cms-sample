@@ -1,24 +1,21 @@
 <% 
 req._override_title = ''; 
 %>
+<style type="text/css">
+.jshInstance_CMS_mlogin a { display:none; }
+.jshInstance_CMS_mlogin label { display:none; }
+.jshInstance_CMS_mlogin .button { padding:2px 8px; margin-top:2px; }
+</style>
 <div><!-- ***JSHARMONY_LOGIN_DEMO*** -->
-  <h1 style="padding-bottom:20px;">Welcome to the jsHarmony CMS Demo</h1>
-  The jsHarmony CMS is an open source static content CMS, with flexible in-page editing and support for integration into existing web applications.<br/><br/>
-  Visit the <a href="https://www.jsharmonycms.com/">jsharmonycms.com</a> website for documentation and the Getting Started video tutorials.
-  <hr style="margin:20px 0;" />
-  <div style="padding:8px 0 18px 0;">
-    <div style="display:inline-block;background-color:#ffff00;border:1px solid #ccc;padding:2px 12px;">This demo site is READ-ONLY.</div>
-    &nbsp; Create your own local, editable instance by installing the <a href="https://github.com/apHarmony/jsharmony-cms-sample" target="_blank">jsharmony-cms-sample</a>
-  </div>
-  <div>On publish, the demo site deploys to <a href="https://demo.jsharmonycms.com:3303" target="_blank">https://demo.jsharmonycms.com:3303</a></div>
-  
   <!-- MAIN SYSTEM DEMO ACCOUNT -->
   <% if(!ejsparams.username) ejsparams.username = 'demo@jsharmonycms.com'; %>
-  <h4 style="margin-bottom:5px;">CMS Demo User:</h4>
-  <b>User:</b> demo@jsharmonycms.com<br/>
-  <b>Password:</b> Content@Work<br/>
-  &nbsp;<br/>
-  <h1 style="display:inline-block;padding-top:20px;" class="xform_title">CMS Login</h1>
+  <h1 style="display:inline-block;" class="xform_title">CMS Demo - Read-Only</h1>
+  <div style="padding-top:2px;">
+    <div style="padding-bottom:1px;"><b>Demo User:</b> demo@jsharmonycms.com <span style="color:#999;">&nbsp;(read-only)</span></div>
+    <b>Password:</b> Content@Work
+  </div>
+  <div style="padding-top:14px;font-weight:bold;display:none;">* Demo Site is Read-Only *</div>
+  <div style="width:1px;height:15px;"></div>
 </div>
 <%-jsh.RenderView('jsharmony/jsh_login',ejsparams)%>
 <script type="text/javascript">

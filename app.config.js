@@ -15,6 +15,7 @@ exports = module.exports = function(jsh, config, dbconfig){
 
   config.app_settings = _.extend(config.app_settings, {
     publish_preview_site_port: 8082,
+    recreate_db_on_startup: true,
   });
   
   jsh.Extensions.image = require('jsharmony-image-sharp');

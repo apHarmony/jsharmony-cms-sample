@@ -21,6 +21,8 @@ jsh.Init(function(){
   var db = jsh.DB[dbid];
   var config = jsh.Config;
 
+  if(!config.app_settings.recreate_db_on_startup) return process.exit(0);
+
   var dbconfig = jsh.DBConfig[dbid];
   if(dbconfig.admin_user){
     dbconfig = _.extend({}, dbconfig);
