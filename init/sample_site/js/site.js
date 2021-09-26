@@ -14,6 +14,16 @@ $(document).ready(function(){
   });
 });
 
+document.addEventListener('click', function(e){
+  if(e && e.target && e.target.hasAttribute && e.target.hasAttribute('href')){
+    var href = (e.target.getAttribute('href')||'').toString();
+    if(href && (href[0]=='#')){
+      document.location.hash = '#';
+      e.preventDefault();
+    }
+  }
+}, false);
+
 //Hide Popup Menus when user clicks outside
 $(document).click(function(e){
   if(e.target){
