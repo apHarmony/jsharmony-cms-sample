@@ -18,7 +18,8 @@ document.addEventListener('click', function(e){
   if(e && e.target && e.target.hasAttribute && e.target.hasAttribute('href')){
     var href = (e.target.getAttribute('href')||'').toString();
     if(href && (href[0]=='#')){
-      document.location.hash = '#';
+      window.location.hash = '#';
+      window.location.hash = href;
       e.preventDefault();
     }
   }
