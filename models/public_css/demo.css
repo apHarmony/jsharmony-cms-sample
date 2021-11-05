@@ -1,0 +1,16 @@
+.demo_message {
+  background-color: #00ff00;
+  position: absolute;
+  top: 25px;
+  right: 3px;
+  z-index: 9;
+  padding: 1px 20px;
+  opacity: 0.75;
+  border-radius: 15px;
+  cursor: default;
+}
+@media screen and (max-width: 500px) {
+  .demo_message {
+    top:-3px;
+  }
+}
