@@ -41,7 +41,7 @@ exports = module.exports = function(jsh, config, dbconfig){
   config.onServerReady.push(function (cb, servers){
     async.waterfall([
 
-      //Sample Test Site - Serves the published static files on port 8083
+      //Sample Test Site - Serves the published static files on port 8082
       function(load_cb){
         if(config.app_settings.publish_preview_site_port === false) return;
         var port = config.app_settings.publish_preview_site_port;
