@@ -6,6 +6,7 @@
   },
   "cms.sys_user_site": {
     "data_keys": ["sys_user_id"],
+    "dependencies": ["cms.branch","cms.site"],
     "sample_data": [
       { "site_id": 1, "branch_id": "1", "sys_user_id": "1" }
     ]
