@@ -1,11 +1,11 @@
 //Initialize "Insert Page" component in Page Preview / Editor
 component.onRender = function(element, data, properties, cms, component) {
-  var container = $(element).find('.cmptInsertPage').first();
+  var container = XDom(element).get('.cmptInsertPage').first();
   if(data && data.item) this.insertPage(container, data.item.page);
 }
 
 //Load Page from Server and inject into Page Preview / Editor
-component.insertPage = function(jcontainer, pageUrl){
+component.insertPage = function(xdcontainer, pageUrl){
   if(!pageUrl) return;
   if(!cms.App.externalPageCache) cms.App.externalPageCache = {};
   XExt.execif(!(pageUrl in cms.App.externalPageCache),
@@ -35,7 +35,7 @@ component.insertPage = function(jcontainer, pageUrl){
       );
     },
     function(){ //Inject Page Content into Preview
-      jcontainer.html(cms.App.externalPageCache[pageUrl]+'<div style="clear:both;"></div>');
+      xdcontainer.html = cms.App.externalPageCache[pageUrl]+'<div style="clear:both;"></div>';
     }
   );
 }

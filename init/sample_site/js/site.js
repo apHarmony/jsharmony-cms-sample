@@ -1,16 +1,16 @@
-$(document).ready(function(){
+XDom.onPageLoad(function(){
   //Click on overlay behind sidebar menu
-  $('#content_block').click(function(){ xmore_click(); });
+  XDom('#content_block').on('click', function(){ xmore_click(); });
   
   //Initialize Slideshow Components
-  $('.cmptSlideshow').each(function(){
-    var animation = $(this).attr('data-animation');
-    var slideshow = new aphSlideshow($(this), 4000, animation);
+  XDom('.cmptSlideshow').for(function(xdobj){
+    var animation = XDom.getAttribute(xdobj, 'data-animation');
+    var slideshow = new aphSlideshow(xdobj, 4000, animation);
   });
 
   //Initialize Carousel Components
-  $('.cmptCarousel').each(function(){
-    var carousel = new aphCarousel($(this));
+  XDom('.cmptCarousel').for(function(xdobj){
+    var carousel = new aphCarousel(xdobj);
   });
 });
 
@@ -26,32 +26,33 @@ document.addEventListener('click', function(e){
 }, false);
 
 //Hide Popup Menus when user clicks outside
-$(document).click(function(e){
+XDom(document).on('click', function(e){
   if(e.target){
-    if($(e.target).hasClass('nav_button_container')) return;
-    if($(e.target).closest('.nav_button_container').length) return;
+    var xdtarget = XDom(e.target);
+    if(xdtarget.class.contains('nav_button_container')) return;
+    if(xdtarget.parent('.nav_button_container').length) return;
   }
 });
 
 function side_menu_click(obj){
-  var jobj = $(obj);
-  var menu_item_id = jobj.data('id');
+  var xdobj = XDom(obj);
+  var menu_item_id = xdobj.data.id;
   if(!menu_item_id) return true;
-  var secondary_panel = $('#side_menu_'+menu_item_id);
+  var secondary_panel = XDom('#side_menu_'+menu_item_id);
   if(!secondary_panel.length) return true;
-  secondary_panel.fadeIn();
+  secondary_panel.animate.opacity(true);
   return false;
 }
 
 function side_menu_back(obj){
-  var jpane = $(obj).closest('.side_menu_pane');
+  var xdpane = XDom(obj).parent('.side_menu_pane');
   //Clear all secondary panes
-  if(!jpane.length){
-    $('.side_menu_pane_secondary').fadeOut();
+  if(!xdpane.length){
+    XDom('.side_menu_pane_secondary').animate.opacity(false);
     return;
   }
   //Clear current pane
-  jpane.fadeOut();
+  xdpane.animate.opacity(false);
 }
 
 var side_menu_expanded = false;
@@ -59,15 +60,16 @@ var _SIDE_MENU_WIDTH = 250;
 var menu_base_width = 0;
 var menu_base_width_checks = 0;
 
-$(document).ready(function(){ xupdate_layout(); });
-$(window).resize(function(){ xupdate_layout(); });
+XDom.onPageLoad(function(){ xupdate_layout(); });
+XDom(window).on('resize', function(){ xupdate_layout(); });
 window.setInterval(function(){ xupdate_layout(); }, 500);
 
 var xupdate_layout_times = [];
 
 function xupdate_layout(source){
-  var wbody = $('body').width();
-  $('#body_inner').width(wbody);
+  var xdBody = XDom('body'); 
+  var wbody = xdBody.calc.width();
+  XDom('#body_inner').style.width = wbody;
 
   var curtime = new Date().getTime();
   xupdate_layout_times.push(curtime);
@@ -80,22 +82,24 @@ function xupdate_layout(source){
   }
 
   //Resize body wrapper
-  if($('#body_wrapper').length){
-    var wsidemenu = wbody - $('#body_wrapper').width();
+  var xdBodyWrapper = XDom('#body_wrapper');
+  if(xdBodyWrapper.length){
+    var wsidemenu = wbody - xdBodyWrapper.calc.width();
     if(wsidemenu > _SIDE_MENU_WIDTH) wsidemenu = _SIDE_MENU_WIDTH; 
     if(wsidemenu>0){
-      $('#body_wrapper').width(wbody - wsidemenu);
+      xdBodyWrapper.style.width = wbody - wsidemenu;
     }
   }
 
   //Get sum of menu item widths
   var old_menu_base_width = menu_base_width;
-  if($('#xnav').is(':visible')){
+  var xdXNav = XDom('#xnav');
+  if(xdXNav.isVisible()){
     menu_base_width = 0;
     var num_items = 0;
-    $('#xnav').children('.nav_button_container').each(function(){ num_items++; menu_base_width += $(this).outerWidth(); });
+    xdXNav.getChildren('.nav_button_container').for(function(xdobj){ num_items++; menu_base_width += xdobj.calc.widthToBorder(); });
     menu_base_width += (num_items-1)*65;
-    $('#xnav').css('max-width', menu_base_width + 'px');
+    xdXNav.style.maxWidth = menu_base_width + 'px';
     menu_base_width_checks++;
     if(old_menu_base_width != menu_base_width) menu_base_width_checks = 1;
   }
@@ -107,31 +111,40 @@ function xupdate_layout(source){
     widehead = true;
   }
 
-  $('body').toggleClass('widehead', widehead);
+  if(widehead) xdBody.class.add('widehead');
+  else xdBody.class.remove('widehead');
 
-  if(widehead && $('#xnav').is(':visible') && (menu_base_width_checks < 2)){ xupdate_layout('second_pass'); }
+  if(widehead && xdXNav.isVisible() && (menu_base_width_checks < 2)){ xupdate_layout('second_pass'); }
 }
 
 function xmore_click(){
   var w = _SIDE_MENU_WIDTH;
   side_menu_expanded = true;
-  if($('#side_menu_wrapper').width() > 0){
-    $('#content_block').hide();
+  var xdSideMenuWrapper = XDom('#side_menu_wrapper');
+  var xdContentBlock = XDom('#content_block');
+  if(xdSideMenuWrapper.calc.width() > 0){
+    xdContentBlock.style.display = false;
     w = 0;
   }
   else {
-    $('#content_block').show();
+    xdContentBlock.style.display = true;
   }
-  $('#xmenu_solidbg').animate({'left':w+'px'});
-  $('#body_wrapper').animate({'left':w+'px'}, { 
-    step:function(cleft){ $('#body_wrapper').width($('body').width()-cleft); } ,
-    done:function(){ if($('body').width()==$('#body_wrapper').width()) $('#body_wrapper').css('width','auto'); },
-    queue: false
+  XDom('#xmenu_solidbg').animate({'left':w+'px'});
+  var xdbody = XDom('body');
+  var xdbodywrapper = XDom('#body_wrapper');
+  var initLeft = xdbodywrapper.calc.left();
+  xdbodywrapper.animate(function(obj, pct){
+    var curleft = initLeft+((w - initLeft)*pct);
+    var xdobj = XDom(obj);
+    xdobj.style.left = curleft+'px';
+    xdobj.style.width = xdbody.calc.width()-curleft;
+  }, 500, function(){ 
+    if(XDom('body').calc.width()==XDom('#body_wrapper').calc.width()) XDom('#body_wrapper').style.width = 'auto'; 
   });
-  $('#xmenu').animate({'left':w+'px'});
-  $('#side_menu_wrapper').animate({'width':w+'px'});
+  XDom('#xmenu').animate({'left':w+'px'});
+  xdSideMenuWrapper.animate({'width':w+'px'});
 }
 
 function xsidenav_more_click(obj){
-  $(obj).closest('.xsidenav').find('.xsidenav_tree').toggleClass('expanded');
+  var xdSideNavTree = XDom(obj).parent('.xsidenav').get('.xsidenav_tree').animate.class('expanded');
 }
