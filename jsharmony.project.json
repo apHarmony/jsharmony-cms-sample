@@ -16,8 +16,7 @@
         "key": "cert/localhost.key",
         "cert": "cert/localhost.crt"
       }
-    ],
-    "generate_nstart": true
+    ]
   },
   "package": {
     "dependencies": {

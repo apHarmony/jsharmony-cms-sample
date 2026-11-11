@@ -30,7 +30,7 @@ jsHarmony CMS Sample Project
    
 4. Start the server by running:
    ````
-   nstart.cmd
+   jsharmony dev
    -- or --
    node app.js
    ````
